@@ -10,61 +10,67 @@
     
     <style>
         :root {
-            --bg-main: #0f172a; /* Bleu nuit très sombre */
-            --bg-sidebar: #1e293b; /* Gris-bleu sombre */
+            --bg-main: #0f172a; 
+            --bg-sidebar: #1e293b; 
             --bg-card: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Bleu clair néon */
+            --accent: #38bdf8; 
             --border-color: #334155;
         }
 
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); }
         
         /* Sidebar (Barre Gauche) */
-        .sidebar { background-color: var(--bg-sidebar); height: 100vh; position: fixed; top: 0; left: 0; width: 280px; overflow-y: auto; padding: 40px 30px; border-right: 1px solid var(--border-color); z-index: 1000; }
+        .sidebar { background-color: var(--bg-sidebar); height: 100vh; position: fixed; top: 0; left: 0; width: 300px; overflow-y: auto; padding: 40px 30px; border-right: 1px solid var(--border-color); z-index: 1000; }
         .profile-img { width: 120px; height: 120px; background: linear-gradient(135deg, #0284c7, #38bdf8); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
-        .sidebar-title { font-weight: 700; font-size: 1.4rem; margin-bottom: 5px; color: var(--text-main); text-align: center; }
+        .sidebar-title { font-weight: 700; font-size: 1.5rem; margin-bottom: 5px; color: var(--text-main); text-align: center; }
         .sidebar-subtitle { font-size: 0.85rem; color: var(--accent); text-align: center; margin-bottom: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .contact-list { list-style: none; padding: 0; font-size: 0.85rem; margin-top: 30px; }
+        .contact-list { list-style: none; padding: 0; font-size: 0.9rem; margin-top: 30px; }
         .contact-list li { margin-bottom: 15px; display: flex; align-items: center; color: var(--text-muted); }
-        .contact-list i { width: 30px; color: var(--accent); font-size: 1.1rem; }
+        .contact-list i { width: 30px; color: var(--accent); font-size: 1.2rem; }
+        .contact-link { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .contact-link:hover { color: var(--accent); }
 
         /* Contenu Principal */
-        .main-content { margin-left: 280px; padding: 60px 5%; }
-        .section-header { font-weight: 700; font-size: 1.8rem; color: var(--text-main); margin-bottom: 40px; display: flex; align-items: center; }
+        .main-content { margin-left: 300px; padding: 60px 5%; }
+        .section-header { font-weight: 700; font-size: 1.8rem; color: var(--text-main); margin-bottom: 40px; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
         .section-header i { color: var(--accent); margin-right: 15px; font-size: 1.5rem; }
 
         /* Timeline (Parcours & Exp) */
-        .timeline-card { background: var(--bg-card); border-radius: 12px; padding: 25px; margin-bottom: 20px; border-left: 4px solid var(--accent); border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .timeline-date { font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 5px; }
-        .timeline-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; }
+        .timeline-card { background: var(--bg-card); border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid var(--accent); border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .timeline-date { font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 8px; display: inline-block; background: rgba(56, 189, 248, 0.1); padding: 4px 10px; border-radius: 20px; }
+        .timeline-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 5px; color: var(--text-main); }
+        .timeline-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; font-weight: 500; }
 
         /* Projets Cards */
-        .project-card { background: var(--bg-card); border-radius: 15px; padding: 25px; height: 100%; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; }
-        .project-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15); }
+        .project-card { background: var(--bg-card); border-radius: 15px; padding: 25px; height: 100%; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; position: relative; overflow: hidden; }
+        .project-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: left; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--border-color); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .project-card:hover::before { transform: scaleX(1); }
         .project-icon { width: 50px; height: 50px; background: rgba(56, 189, 248, 0.1); color: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
-        .project-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main); }
+        .project-title { font-weight: 700; font-size: 1.15rem; margin-bottom: 10px; color: var(--text-main); }
         
         /* Badges / Tags */
         .tags-container { margin-top: 15px; }
         .badge-tech { background-color: rgba(255,255,255,0.05); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; margin-bottom: 6px; display: inline-block; border: 1px solid rgba(56, 189, 248, 0.2); }
+        .badge-subject { background-color: rgba(148, 163, 184, 0.1); color: var(--text-muted); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; margin-bottom: 5px; display: inline-block; border: 1px solid rgba(148, 163, 184, 0.2); }
 
         /* Boutons */
-        .btn-custom { background-color: var(--accent); color: #0f172a; font-weight: 600; border: none; }
-        .btn-custom:hover { background-color: #0284c7; color: white; }
+        .btn-custom { background-color: var(--accent); color: #0f172a; font-weight: 600; border: none; transition: 0.3s; }
+        .btn-custom:hover { background-color: #0284c7; color: white; transform: scale(1.02); }
 
         /* Modales (Dark Mode) */
         .modal-content { background-color: var(--bg-sidebar); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 15px; }
-        .modal-header { border-bottom: 1px solid var(--border-color); }
-        .modal-footer { border-top: 1px solid var(--border-color); }
+        .modal-header { border-bottom: 1px solid var(--border-color); background-color: rgba(0,0,0,0.2); border-radius: 15px 15px 0 0; }
+        .modal-footer { border-top: 1px solid var(--border-color); background-color: rgba(0,0,0,0.2); border-radius: 0 0 15px 15px; }
         .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
-        .modal-body { padding: 30px; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
+        .modal-body { padding: 40px; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
         .modal-body h4, .modal-body h5, .modal-body h6 { color: var(--text-main); font-weight: 600; margin-top: 25px; margin-bottom: 15px; }
         
         /* Zone de Screenshot dans le README */
-        .readme-img-placeholder { width: 100%; height: 300px; background: #0f172a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #475569; margin: 25px 0; font-style: italic; border: 2px dashed #334155; }
-        .readme-code { background: #0f172a; padding: 15px; border-radius: 8px; font-family: monospace; color: #38bdf8; border: 1px solid #334155; margin-bottom: 20px; display: block; }
+        .readme-img-placeholder { width: 100%; height: 350px; background: #0f172a; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #475569; margin: 30px 0; border: 2px dashed #334155; }
+        .readme-code { background: #0f172a; padding: 15px; border-radius: 8px; font-family: monospace; color: #38bdf8; border: 1px solid #334155; margin-bottom: 20px; display: block; overflow-x: auto; }
 
         @media (max-width: 991px) {
             .sidebar { position: relative; width: 100%; height: auto; border-right: none; padding: 30px 20px; border-bottom: 1px solid var(--border-color); }
@@ -75,23 +81,23 @@
 <body>
 
 <aside class="sidebar">
-    <div class="profile-img"><i class="fas fa-terminal"></i></div>
+    <div class="profile-img"><i class="fas fa-code"></i></div>
     <h1 class="sidebar-title">Tom Le Corre</h1>
     <div class="sidebar-subtitle">Data Analyst</div>
 
-    <p class="small text-center mb-4 text-muted">
-        Diplômé en Économie (Assas) et spécialisé en Data Analytics (Sorbonne). Je transforme les données complexes en stratégies d'aide à la décision.
+    <p class="small text-center mb-4 text-muted" style="line-height: 1.6;">
+        Diplômé en Économie (Assas) et spécialisé en Data Analytics (Sorbonne). Je transforme la donnée complexe en stratégies d'aide à la décision.
     </p>
 
-    <a href="./assets/cvdata.pdf" target="_blank" class="btn btn-custom w-100 rounded-pill shadow-sm mb-3">
-        <i class="fas fa-download me-2"></i> Télécharger CV
+    <a href="./assets/cvdata.pdf" target="_blank" class="btn btn-custom w-100 rounded-pill shadow-sm mb-4 py-2">
+        <i class="fas fa-download me-2"></i> Télécharger mon CV
     </a>
 
     <ul class="contact-list">
-        <li><i class="fas fa-envelope"></i> tomlecorre@outlook.fr</li>
-        <li><i class="fas fa-phone"></i> 07 89 58 42 25</li>
-        <li><i class="fas fa-location-dot"></i> Bois-le-Roi, 77590</li>
-        <li><i class="fab fa-github"></i> <a href="https://github.com/tomlecorre-cmd" target="_blank" class="text-decoration-none" style="color: var(--text-muted);">tomlecorre-cmd</a></li>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:tomlecorre@outlook.fr" class="contact-link">tomlecorre@outlook.fr</a></li>
+        <li><i class="fas fa-phone"></i> <a href="tel:+33789584225" class="contact-link">+33 7 89 58 42 25</a></li>
+        <li><i class="fas fa-location-dot"></i> <span class="text-muted">Bois-le-Roi, 77590</span></li>
+        <li><i class="fab fa-github"></i> <a href="https://github.com/tomlecorre-cmd" target="_blank" class="contact-link">tomlecorre-cmd</a></li>
     </ul>
 </aside>
 
@@ -101,57 +107,75 @@
         <h2 class="section-header"><i class="fas fa-graduation-cap"></i> Parcours Académique</h2>
         
         <div class="timeline-card">
-            <div class="timeline-date">2025 - 2026</div>
+            <span class="timeline-date">2025 - 2026</span>
             <h3 class="timeline-title">D.U. Data Analytics (Niveau Master 1)</h3>
-            <p class="text-muted small mb-2">Université Paris 1 Panthéon-Sorbonne</p>
-            <div class="tags-container">
-                <span class="badge-tech">Machine Learning</span> <span class="badge-tech">Deep Learning</span> 
-                <span class="badge-tech">Spark (Cloud)</span> <span class="badge-tech">SQL</span> 
-                <span class="badge-tech">Python</span> <span class="badge-tech">Neo4j</span>
+            <div class="timeline-subtitle">Université Paris 1 Panthéon-Sorbonne</div>
+            <p class="text-muted small mb-3">Spécialisation intensive en ingénierie des données, intelligence artificielle et architectures distribuées.</p>
+            <div>
+                <span class="badge-subject">SQL</span>
+                <span class="badge-subject">Python</span>
+                <span class="badge-subject">Data Mining</span>
+                <span class="badge-subject">Machine Learning</span>
+                <span class="badge-subject">Deep Learning</span>
+                <span class="badge-subject">Generative IA</span>
+                <span class="badge-subject">ML Ops</span>
+                <span class="badge-subject">Spark (Cloud)</span>
+                <span class="badge-subject">Neo4J</span>
+                <span class="badge-subject">Data Streaming</span>
+                <span class="badge-subject">Dataviz</span>
             </div>
         </div>
 
         <div class="timeline-card">
-            <div class="timeline-date">2022 - 2025</div>
-            <h3 class="timeline-title">Licence Économie-Gestion (Parcours Analyse Économique)</h3>
-            <p class="text-muted small mb-2">Université Paris-Panthéon-Assas</p>
-            <div class="tags-container">
-                <span class="badge-tech">Économétrie</span> <span class="badge-tech">Statistiques</span> 
-                <span class="badge-tech">Macroéconomie</span> <span class="badge-tech">Microéconomie</span>
+            <span class="timeline-date">2022 - 2025</span>
+            <h3 class="timeline-title">Licence Économie-Gestion</h3>
+            <div class="timeline-subtitle">Université Paris-Panthéon-Assas • Parcours Analyse Économique</div>
+            <p class="text-muted small mb-3">Formation rigoureuse en modélisation mathématique, statistiques et compréhension des marchés.</p>
+            <div>
+                <span class="badge-subject">Analyse de données</span>
+                <span class="badge-subject">Microéconomie</span>
+                <span class="badge-subject">Macroéconomie</span>
+                <span class="badge-subject">Statistiques</span>
+                <span class="badge-subject">Économétrie</span>
+                <span class="badge-subject">Théorie des Jeux</span>
+                <span class="badge-subject">Python</span>
+                <span class="badge-subject">VBA</span>
             </div>
         </div>
     </section>
 
     <section class="mb-5">
-        <h2 class="section-header"><i class="fas fa-briefcase"></i> Expériences</h2>
+        <h2 class="section-header"><i class="fas fa-briefcase"></i> Expériences Professionnelles</h2>
 
         <div class="timeline-card">
-            <div class="timeline-date">Mai - Juin 2024</div>
+            <span class="timeline-date">Mai - Juin 2024</span>
             <h3 class="timeline-title">Stage en Contrôle de Gestion</h3>
-            <p class="text-muted small mb-2">Moulins Soufflet (Groupe Invivo)</p>
-            <ul class="text-muted small mb-0 ps-3">
-                <li>Analyse de rentabilité sur la fusion de sites de production.</li>
-                <li>Extraction et correction de bases de données pour ajuster les prix contrats.</li>
-                <li>Outils : Excel (avancé), ERP JDE et SAP.</li>
+            <div class="timeline-subtitle">Moulins Soufflet (Groupe Invivo)</div>
+            <ul class="text-muted small mb-0 ps-3 lh-lg">
+                <li><strong>Suivi des performances financières :</strong> mise à jour des rapports mensuels et participation à la clôture annuelle.</li>
+                <li><strong>Analyse de rentabilité :</strong> estimation des coûts et de la rentabilité liés à la fusion de sites de production.</li>
+                <li><strong>Gestion de bases de données :</strong> extraction, analyse et correction de données pour ajuster les prix des contrats.</li>
+                <li><strong>Outils utilisés :</strong> Excel (fonctions avancées), ERP JDE et SAP.</li>
             </ul>
         </div>
 
         <div class="timeline-card">
-            <div class="timeline-date">Étés 2022 à 2024</div>
-            <h3 class="timeline-title">Ouvrier (Bâtiment & Terrain)</h3>
-            <p class="text-muted small mb-0">Cygem - Développement de la rigueur, gestion du temps et esprit d'équipe sur chantiers.</p>
+            <span class="timeline-date">Étés 2022 à 2024</span>
+            <h3 class="timeline-title">Ouvrier du Bâtiment</h3>
+            <div class="timeline-subtitle">Cygem</div>
+            <p class="text-muted small mb-0">Expérience de terrain (fondations, agrandissement, panneaux photovoltaïques, utilisation d'excavateur) permettant de développer une forte <strong>rigueur</strong>, une excellente <strong>gestion du temps</strong> et un solide <strong>esprit d'équipe</strong>.</p>
         </div>
     </section>
 
     <section>
-        <h2 class="section-header"><i class="fas fa-code-branch"></i> Projets GitHub</h2>
+        <h2 class="section-header"><i class="fas fa-code-branch"></i> Projets & Réalisations</h2>
         <div class="row g-4">
 
             <div class="col-md-6 col-lg-4">
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalStreamlit">
                     <div class="project-icon"><i class="fas fa-dumbbell"></i></div>
                     <h3 class="project-title">Coach Sportif AI</h3>
-                    <p class="text-muted small">Application web générant des programmes personnalisés.</p>
+                    <p class="text-muted small">Application web générant des programmes sport/nutrition adaptés.</p>
                     <div class="tags-container"><span class="badge-tech">Python</span> <span class="badge-tech">Streamlit</span></div>
                 </div>
             </div>
@@ -159,27 +183,18 @@
             <div class="col-md-6 col-lg-4">
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalSQL">
                     <div class="project-icon"><i class="fas fa-database"></i></div>
-                    <h3 class="project-title">Base E-commerce</h3>
-                    <p class="text-muted small">Conception, contraintes DDL et indexation (Sakila).</p>
-                    <div class="tags-container"><span class="badge-tech">SQL</span> <span class="badge-tech">Indexation</span></div>
+                    <h3 class="project-title">SQL Avancé E-commerce</h3>
+                    <p class="text-muted small">Conception (DDL), optimisation et indexation (Sakila).</p>
+                    <div class="tags-container"><span class="badge-tech">SQL</span> <span class="badge-tech">Data Modeling</span></div>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-4">
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalScraping">
                     <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="project-title">Scraping Immo</h3>
+                    <h3 class="project-title">Web Scraping Immo</h3>
                     <p class="text-muted small">Extraction et analyse du marché immobilier.</p>
-                    <div class="tags-container"><span class="badge-tech">Python</span> <span class="badge-tech">Web Scraping</span></div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalCAC">
-                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="project-title">Macro & CAC 40</h3>
-                    <p class="text-muted small">Impact macroéconomique sur la bourse (2000-2025).</p>
-                    <div class="tags-container"><span class="badge-tech">Data Management</span> <span class="badge-tech">Finance</span></div>
+                    <div class="tags-container"><span class="badge-tech">Python</span> <span class="badge-tech">Scraping</span></div>
                 </div>
             </div>
 
@@ -187,7 +202,7 @@
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalSpark">
                     <div class="project-icon"><i class="fas fa-cloud"></i></div>
                     <h3 class="project-title">Big Data & Cloud</h3>
-                    <p class="text-muted small">Traitement de données massives (Apache Spark).</p>
+                    <p class="text-muted small">Traitement de données massives en architecture distribuée.</p>
                     <div class="tags-container"><span class="badge-tech">Spark</span> <span class="badge-tech">Cloud</span></div>
                 </div>
             </div>
@@ -195,17 +210,26 @@
              <div class="col-md-6 col-lg-4">
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalNeo4j">
                     <div class="project-icon"><i class="fas fa-project-diagram"></i></div>
-                    <h3 class="project-title">Graphes Neo4j</h3>
-                    <p class="text-muted small">Modélisation de relations et requêtes Cypher.</p>
+                    <h3 class="project-title">Bases Orientées Graphes</h3>
+                    <p class="text-muted small">Modélisation de relations complexes et requêtes Cypher.</p>
                     <div class="tags-container"><span class="badge-tech">Neo4j</span> <span class="badge-tech">NoSQL</span></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalCAC">
+                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="project-title">Macroéconomie CAC 40</h3>
+                    <p class="text-muted small">Data Management : Impact macro sur les secteurs boursiers.</p>
+                    <div class="tags-container"><span class="badge-tech">Data Management</span> <span class="badge-tech">Finance</span></div>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-4">
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalStata">
                     <div class="project-icon"><i class="fas fa-stethoscope"></i></div>
-                    <h3 class="project-title">Économétrie Santé</h3>
-                    <p class="text-muted small">Analyse via modèles MCO, Probit et Logit.</p>
+                    <h3 class="project-title">Économétrie & Santé</h3>
+                    <p class="text-muted small">Analyse via modèles MCO, MCG, Probit et Logit.</p>
                     <div class="tags-container"><span class="badge-tech">Stata</span> <span class="badge-tech">Statistiques</span></div>
                 </div>
             </div>
@@ -213,8 +237,8 @@
             <div class="col-md-6 col-lg-4">
                 <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalVBA">
                     <div class="project-icon"><i class="fas fa-file-excel"></i></div>
-                    <h3 class="project-title">Outil Boursier VBA</h3>
-                    <p class="text-muted small">Modélisation d'indices financiers sous Excel.</p>
+                    <h3 class="project-title">Modélisation VBA</h3>
+                    <p class="text-muted small">Création d'un outil de modélisation d'indice boursier.</p>
                     <div class="tags-container"><span class="badge-tech">VBA</span> <span class="badge-tech">Excel</span></div>
                 </div>
             </div>
@@ -227,31 +251,31 @@
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Coach Sportif AI</h4>
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Appli Web Coach Sportif</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <h4 style="margin-top:0;">🏃‍♂️ Application Coach Sportif & Nutrition</h4>
-                <p>Bienvenue dans le dépôt de mon application Streamlit. Ce projet vise à fournir des recommandations personnalisées d'exercices et de repas basées sur les objectifs de l'utilisateur.</p>
+                <h4 style="margin-top:0;">🏋️‍♂️ Coach Sportif & Nutrition AI</h4>
+                <p>Création d'une application web interactive proposant des menus et graphiques dynamiques pour générer un programme de sport et de nutrition personnalisé.</p>
                 
-                <div class="readme-img-placeholder">[Insérez ici une capture d'écran de l'application Streamlit]</div>
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-image fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici une capture d'écran de l'application Streamlit]</p>
+                </div>
 
-                <h5>🎯 Objectifs du Projet</h5>
+                <h5>🎯 Fonctionnalités</h5>
                 <ul>
-                    <li>Collecter les données physiologiques de l'utilisateur de manière interactive.</li>
-                    <li>Générer dynamiquement un programme sportif et un plan nutritionnel.</li>
-                    <li>Visualiser les apports caloriques via des graphiques interactifs.</li>
+                    <li>Interface utilisateur intuitive développée avec <strong>Streamlit</strong>.</li>
+                    <li>Génération d'un plan d'entraînement basé sur les objectifs de l'utilisateur.</li>
+                    <li>Visualisation des macros et apports caloriques via Dataviz.</li>
                 </ul>
 
                 <h5>🛠️ Stack Technique</h5>
-                <span class="readme-code">pip install streamlit pandas matplotlib</span>
-
-                <h5>🚀 Utilisation</h5>
-                <p>Pour lancer l'application en local : <br><code>streamlit run app.py</code></p>
+                <span class="readme-code">Python, Streamlit, Pandas, Matplotlib/Plotly</span>
             </div>
             <div class="modal-footer justify-content-between">
                 <div><span class="badge-tech">Python</span><span class="badge-tech">Streamlit</span></div>
-                <a href="https://github.com/tomlecorre-cmd/ton-repo-streamlit" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Code Source sur GitHub</a>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
             </div>
         </div>
     </div>
@@ -261,28 +285,31 @@
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Base E-commerce</h4>
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Projet SQL Avancé</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <h4 style="margin-top:0;">🗄️ Architecture SQL Avancée (Sakila & E-commerce)</h4>
-                <p>Ce projet illustre la conception et l'optimisation complète d'une base de données relationnelle pour le traitement de requêtes complexes liées à des ventes en ligne.</p>
+                <h4 style="margin-top:0;">🗄️ Architecture SQL (Sakila & E-commerce)</h4>
+                <p>Conception complète d'une base de données relationnelle et analyse poussée des performances via des requêtes complexes.</p>
                 
-                <div class="readme-img-placeholder">[Insérez ici le Diagramme Entité-Association (ERD) de la base]</div>
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-project-diagram fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici le Schéma Relationnel de la Base de Données (MCD)]</p>
+                </div>
 
-                <h5>🎯 Étapes Clés</h5>
+                <h5>⚙️ Réalisations techniques</h5>
                 <ul>
-                    <li><strong>Conception (DDL) :</strong> Création des tables, clés primaires/étrangères et contraintes.</li>
-                    <li><strong>Manipulation (DML) :</strong> Jointures multiples, sous-requêtes et fonctions d'agrégation.</li>
-                    <li><strong>Optimisation :</strong> Création de Vues pour les rapports récurrents et mise en place d'index pour accélérer les temps de réponse.</li>
+                    <li><strong>DDL & Contraintes :</strong> Structuration robuste de la base (Clés primaires, étrangères).</li>
+                    <li><strong>Analyse & Agrégations :</strong> Utilisation de jointures complexes pour l'analyse des ventes e-commerce.</li>
+                    <li><strong>Optimisation :</strong> Création de Vues virtuelles et mise en place d'indexation pour réduire le temps d'exécution des requêtes.</li>
                 </ul>
                 
-                <h5>💻 Exemple de Requête Optimisée</h5>
-                <span class="readme-code">CREATE INDEX idx_customer_id ON orders(customer_id);<br>CREATE VIEW v_sales_summary AS...</span>
+                <h5>💻 Exemple d'optimisation</h5>
+                <span class="readme-code">CREATE INDEX idx_customer_id ON orders(customer_id);<br>CREATE VIEW v_sales_summary AS SELECT ...</span>
             </div>
             <div class="modal-footer justify-content-between">
-                <div><span class="badge-tech">SQL</span><span class="badge-tech">DDL/DML</span></div>
-                <a href="https://github.com/tomlecorre-cmd/ton-repo-sql" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir les Scripts SQL</a>
+                <div><span class="badge-tech">SQL</span><span class="badge-tech">Optimisation</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
             </div>
         </div>
     </div>
@@ -292,25 +319,178 @@
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Scraping Immo</h4>
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Web Scraping Immobilier</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <h4 style="margin-top:0;">🏠 Analyse du Marché Immobilier (Web Scraping)</h4>
-                <p>Développement de scripts automatisés pour extraire, nettoyer et analyser les annonces immobilières en ligne afin de dégager des tendances de prix.</p>
+                <h4 style="margin-top:0;">🏠 Analyse du Marché Immobilier</h4>
+                <p>Développement de scripts Python pour l'extraction automatique de données web (Web Scraping) afin d'analyser le marché immobilier.</p>
                 
-                <div class="readme-img-placeholder">[Insérez ici un graphique des prix de l'immobilier extraits]</div>
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-chart-bar fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici un graphique montrant la répartition des prix de l'immobilier]</p>
+                </div>
 
-                <h5>🛠️ Outils & Bibliothèques</h5>
+                <h5>🛠️ Processus</h5>
                 <ul>
-                    <li><code>BeautifulSoup / Scrapy</code> pour l'extraction du DOM HTML.</li>
-                    <li><code>Pandas</code> pour le nettoyage et la structuration en DataFrame.</li>
-                    <li><code>Seaborn / Matplotlib</code> pour la Dataviz.</li>
+                    <li>Extraction du DOM HTML automatisée.</li>
+                    <li>Nettoyage des données brutes (Data Cleaning).</li>
+                    <li>Création de visualisations pour identifier les opportunités du marché.</li>
                 </ul>
             </div>
             <div class="modal-footer justify-content-between">
-                <div><span class="badge-tech">Python</span><span class="badge-tech">Pandas</span></div>
-                <a href="https://github.com/tomlecorre-cmd/ton-repo-scraping" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Code Python</a>
+                <div><span class="badge-tech">Python</span><span class="badge-tech">Data Mining</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalSpark" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Apache Spark</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-top:0;">☁️ Traitement Big Data avec Spark</h4>
+                <p>Mise en œuvre d'architectures distribuées pour le traitement de volumes de données massifs en environnement Cloud.</p>
+                
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-server fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici une capture du pipeline ou des temps de traitement Cloud]</p>
+                </div>
+
+                <h5>⚙️ Objectifs</h5>
+                <ul>
+                    <li>Utilisation de PySpark (RDDs et DataFrames) pour l'analyse distribuée.</li>
+                    <li>Optimisation des calculs et gestion du Data Streaming.</li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div><span class="badge-tech">Spark</span><span class="badge-tech">Cloud</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNeo4j" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Neo4j</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-top:0;">🕸️ Bases de Données Orientées Graphes</h4>
+                <p>Modélisation NoSQL pour analyser des relations complexes entre différentes entités de données.</p>
+                
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-network-wired fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici une capture de l'interface Neo4j montrant les noeuds du graphe]</p>
+                </div>
+
+                <h5>⚙️ Stack & Outils</h5>
+                <ul>
+                    <li>Modélisation de Graphes (Noeuds et Relations).</li>
+                    <li>Création de requêtes avancées via le langage <strong>Cypher</strong>.</li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div><span class="badge-tech">Neo4j</span><span class="badge-tech">Cypher</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCAC" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : CAC 40</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-top:0;">📈 Data Management : Impact Macroéconomique sur le CAC 40</h4>
+                <p>Étude de l'impact des indicateurs macro-financiers sur les secteurs du CAC 40 sur la période 2000-2025.</p>
+                
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-chart-area fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici un graphique montrant la corrélation entre les indicateurs et le CAC 40]</p>
+                </div>
+
+                <h5>🎯 Focus du projet</h5>
+                <ul>
+                    <li>Nettoyage et gestion d'un dataset financier sur 25 ans.</li>
+                    <li>Application des connaissances économiques (Assas) à l'analyse de données complexes.</li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div><span class="badge-tech">Data Management</span><span class="badge-tech">Finance</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalStata" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Économétrie Stata</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-top:0;">⚕️ Projet Économétrie : Santé et Internet</h4>
+                <p>Analyse statistique visant à déterminer l'impact de l'utilisation d'Internet sur les déterminants de l'état de santé.</p>
+                
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-table fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici un tableau de résultats statistiques ou un graphique de régression]</p>
+                </div>
+
+                <h5>⚙️ Modèles appliqués (Stata)</h5>
+                <ul>
+                    <li>Modèles des Moindres Carrés Ordinaires (MCO) et Généralisés (MCG).</li>
+                    <li>Modèles à variables qualitatives : <strong>Probit et Logit</strong>.</li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div><span class="badge-tech">Stata</span><span class="badge-tech">Statistiques</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalVBA" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : VBA Bourse</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h4 style="margin-top:0;">📊 Modélisation d'un Indice Boursier</h4>
+                <p>Automatisation et création d'un outil d'aide à la décision financière directement intégré dans Microsoft Excel grâce à VBA.</p>
+                
+                <div class="readme-img-placeholder">
+                    <i class="fas fa-file-excel fa-3x mb-3 text-secondary"></i>
+                    <p>[Insérez ici une capture du Dashboard Excel ou du formulaire VBA]</p>
+                </div>
+
+                <h5>⚙️ Fonctionnalités</h5>
+                <ul>
+                    <li>Développement de macros complexes pour le traitement des données financières.</li>
+                    <li>Création d'interfaces utilisateur (UserForms) pour rendre l'outil accessible.</li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div><span class="badge-tech">VBA</span><span class="badge-tech">Excel Avancé</span></div>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir sur GitHub</a>
             </div>
         </div>
     </div>
