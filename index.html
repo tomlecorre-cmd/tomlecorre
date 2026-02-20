@@ -3,319 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tom Le Corre | Data Analyst Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Tom Le Corre | Portfolio Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-main: #0f172a; /* Bleu nuit très sombre */
-            --bg-sidebar: #1e293b; /* Gris-bleu sombre */
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Bleu clair néon */
-            --border-color: #334155;
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #333; }
+        
+        /* Sidebar (Barre latérale fixe) */
+        .sidebar {
+            background-color: #f8f9fa;
+            border-right: 1px solid #eaeaea;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            padding: 40px 30px;
+        }
+        
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            background-color: #e2e8f0;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: #94a3b8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); }
+        .contact-info { list-style: none; padding: 0; font-size: 0.9rem; margin-top: 25px; }
+        .contact-info li { margin-bottom: 12px; color: #555; }
+        .contact-info i { width: 25px; color: #475569; text-align: center; }
+
+        /* Contenu Principal (Droite) */
+        .main-content { padding: 50px 8vw; }
+        .page-title { font-weight: 700; font-size: 2.5rem; border-bottom: 2px solid #eaeaea; padding-bottom: 15px; margin-bottom: 40px; color: #111; }
         
-        /* Sidebar (Barre Gauche) */
-        .sidebar { background-color: var(--bg-sidebar); height: 100vh; position: fixed; top: 0; left: 0; width: 280px; overflow-y: auto; padding: 40px 30px; border-right: 1px solid var(--border-color); z-index: 1000; }
-        .profile-img { width: 120px; height: 120px; background: linear-gradient(135deg, #0284c7, #38bdf8); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
-        .sidebar-title { font-weight: 700; font-size: 1.4rem; margin-bottom: 5px; color: var(--text-main); text-align: center; }
-        .sidebar-subtitle { font-size: 0.85rem; color: var(--accent); text-align: center; margin-bottom: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .contact-list { list-style: none; padding: 0; font-size: 0.85rem; margin-top: 30px; }
-        .contact-list li { margin-bottom: 15px; display: flex; align-items: center; color: var(--text-muted); }
-        .contact-list i { width: 30px; color: var(--accent); font-size: 1.1rem; }
-
-        /* Contenu Principal */
-        .main-content { margin-left: 280px; padding: 60px 5%; }
-        .section-header { font-weight: 700; font-size: 1.8rem; color: var(--text-main); margin-bottom: 40px; display: flex; align-items: center; }
-        .section-header i { color: var(--accent); margin-right: 15px; font-size: 1.5rem; }
-
-        /* Timeline (Parcours & Exp) */
-        .timeline-card { background: var(--bg-card); border-radius: 12px; padding: 25px; margin-bottom: 20px; border-left: 4px solid var(--accent); border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .timeline-date { font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 5px; }
-        .timeline-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; }
-
-        /* Projets Cards */
-        .project-card { background: var(--bg-card); border-radius: 15px; padding: 25px; height: 100%; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; }
-        .project-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15); }
-        .project-icon { width: 50px; height: 50px; background: rgba(56, 189, 248, 0.1); color: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
-        .project-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main); }
+        /* Projets */
+        .project-card { 
+            border: 1px solid #eaeaea; 
+            border-radius: 10px; 
+            padding: 25px; 
+            margin-bottom: 25px; 
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .project-card:hover { border-color: #0d6efd; box-shadow: 0 5px 15px rgba(13,110,253,0.1); transform: translateX(5px); }
+        .project-title { font-weight: 700; font-size: 1.25rem; color: #0d6efd; margin-bottom: 10px; text-decoration: none; display: inline-block; }
+        .project-title:hover { text-decoration: underline; }
         
-        /* Badges / Tags */
-        .tags-container { margin-top: 15px; }
-        .badge-tech { background-color: rgba(255,255,255,0.05); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; margin-bottom: 6px; display: inline-block; border: 1px solid rgba(56, 189, 248, 0.2); }
+        .tech-tags { margin-top: 15px; }
+        .tech-badge { 
+            background-color: #f1f5f9; 
+            color: #334155; 
+            padding: 4px 12px; 
+            border-radius: 4px; 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            margin-right: 8px; 
+            border: 1px solid #e2e8f0; 
+            display: inline-block;
+            margin-bottom: 5px;
+        }
 
-        /* Boutons */
-        .btn-custom { background-color: var(--accent); color: #0f172a; font-weight: 600; border: none; }
-        .btn-custom:hover { background-color: #0284c7; color: white; }
-
-        /* Modales (Dark Mode) */
-        .modal-content { background-color: var(--bg-sidebar); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 15px; }
-        .modal-header { border-bottom: 1px solid var(--border-color); }
-        .modal-footer { border-top: 1px solid var(--border-color); }
-        .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
-        .modal-body { padding: 30px; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
-        .modal-body h4, .modal-body h5, .modal-body h6 { color: var(--text-main); font-weight: 600; margin-top: 25px; margin-bottom: 15px; }
-        
-        /* Zone de Screenshot dans le README */
-        .readme-img-placeholder { width: 100%; height: 300px; background: #0f172a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #475569; margin: 25px 0; font-style: italic; border: 2px dashed #334155; }
-        .readme-code { background: #0f172a; padding: 15px; border-radius: 8px; font-family: monospace; color: #38bdf8; border: 1px solid #334155; margin-bottom: 20px; display: block; }
-
+        /* Responsive */
         @media (max-width: 991px) {
-            .sidebar { position: relative; width: 100%; height: auto; border-right: none; padding: 30px 20px; border-bottom: 1px solid var(--border-color); }
-            .main-content { margin-left: 0; padding: 40px 20px; }
+            .sidebar { height: auto; position: relative; border-right: none; border-bottom: 1px solid #eaeaea; }
+            .main-content { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-<aside class="sidebar">
-    <div class="profile-img"><i class="fas fa-terminal"></i></div>
-    <h1 class="sidebar-title">Tom Le Corre</h1>
-    <div class="sidebar-subtitle">Data Analyst</div>
-
-    <p class="small text-center mb-4 text-muted">
-        Diplômé en Économie (Assas) et spécialisé en Data Analytics (Sorbonne). Je transforme les données complexes en stratégies d'aide à la décision.
-    </p>
-
-    <a href="./assets/cvdata.pdf" target="_blank" class="btn btn-custom w-100 rounded-pill shadow-sm mb-3">
-        <i class="fas fa-download me-2"></i> Télécharger CV
-    </a>
-
-    <ul class="contact-list">
-        <li><i class="fas fa-envelope"></i> tomlecorre@outlook.fr</li>
-        <li><i class="fas fa-phone"></i> 07 89 58 42 25</li>
-        <li><i class="fas fa-location-dot"></i> Bois-le-Roi, 77590</li>
-        <li><i class="fab fa-github"></i> <a href="https://github.com/tomlecorre-cmd" target="_blank" class="text-decoration-none" style="color: var(--text-muted);">tomlecorre-cmd</a></li>
-    </ul>
-</aside>
-
-<main class="main-content">
-
-    <section class="mb-5">
-        <h2 class="section-header"><i class="fas fa-graduation-cap"></i> Parcours Académique</h2>
+<div class="container-fluid p-0">
+    <div class="row g-0">
         
-        <div class="timeline-card">
-            <div class="timeline-date">2025 - 2026</div>
-            <h3 class="timeline-title">D.U. Data Analytics (Niveau Master 1)</h3>
-            <p class="text-muted small mb-2">Université Paris 1 Panthéon-Sorbonne</p>
-            <div class="tags-container">
-                <span class="badge-tech">Machine Learning</span> <span class="badge-tech">Deep Learning</span> 
-                <span class="badge-tech">Spark (Cloud)</span> <span class="badge-tech">SQL</span> 
-                <span class="badge-tech">Python</span> <span class="badge-tech">Neo4j</span>
+        <aside class="col-lg-3 sidebar text-center">
+            <div class="profile-img">
+                <i class="fas fa-user-tie"></i>
             </div>
-        </div>
-
-        <div class="timeline-card">
-            <div class="timeline-date">2022 - 2025</div>
-            <h3 class="timeline-title">Licence Économie-Gestion (Parcours Analyse Économique)</h3>
-            <p class="text-muted small mb-2">Université Paris-Panthéon-Assas</p>
-            <div class="tags-container">
-                <span class="badge-tech">Économétrie</span> <span class="badge-tech">Statistiques</span> 
-                <span class="badge-tech">Macroéconomie</span> <span class="badge-tech">Microéconomie</span>
+            
+            <h3 class="fw-bold mb-1">Tom Le Corre</h3>
+            <p class="text-muted small mb-4">Data Analyst & Économiste</p>
+            
+            <div class="text-start text-secondary small mb-4 lh-lg">
+                <p>Actuellement étudiant en <strong>D.U. Data Analytics à la Sorbonne</strong> [cite: 7-8].</p>
+                <p>Après l'obtention de ma <strong>Licence d'Économie à Assas</strong> [cite: 11-13], j'ai choisi de me spécialiser dans la donnée. Mon objectif est d'allier ma compréhension des marchés financiers à une expertise technique poussée (Python, SQL, Machine Learning) pour transformer la donnée brute en stratégie.</p>
             </div>
-        </div>
-    </section>
 
-    <section class="mb-5">
-        <h2 class="section-header"><i class="fas fa-briefcase"></i> Expériences</h2>
+            <a href="./assets/cvdata.pdf" target="_blank" class="btn btn-dark w-100 mb-2">
+                <i class="fas fa-file-pdf me-2"></i> Télécharger mon CV
+            </a>
+            <a href="https://github.com/tomlecorre-cmd?tab=repositories" target="_blank" class="btn btn-outline-secondary w-100">
+                <i class="fab fa-github me-2"></i> Mon GitHub
+            </a>
 
-        <div class="timeline-card">
-            <div class="timeline-date">Mai - Juin 2024</div>
-            <h3 class="timeline-title">Stage en Contrôle de Gestion</h3>
-            <p class="text-muted small mb-2">Moulins Soufflet (Groupe Invivo)</p>
-            <ul class="text-muted small mb-0 ps-3">
-                <li>Analyse de rentabilité sur la fusion de sites de production.</li>
-                <li>Extraction et correction de bases de données pour ajuster les prix contrats.</li>
-                <li>Outils : Excel (avancé), ERP JDE et SAP.</li>
+            <ul class="contact-info text-start">
+                <li><i class="fas fa-envelope"></i> tomlecorre@outlook.fr [cite: 3]</li>
+                <li><i class="fas fa-phone"></i> 07 89 58 42 25 [cite: 2]</li>
+                <li><i class="fas fa-map-marker-alt"></i> Bois-le-Roi, 77590 [cite: 4]</li>
             </ul>
-        </div>
+        </aside>
 
-        <div class="timeline-card">
-            <div class="timeline-date">Étés 2022 à 2024</div>
-            <h3 class="timeline-title">Ouvrier (Bâtiment & Terrain)</h3>
-            <p class="text-muted small mb-0">Cygem - Développement de la rigueur, gestion du temps et esprit d'équipe sur chantiers.</p>
-        </div>
-    </section>
+        <main class="col-lg-9 main-content">
+            
+            <h1 class="page-title">Mes Projets Data</h1>
+            <p class="text-muted mb-5">Découvrez ci-dessous une sélection de mes projets académiques et personnels, combinant ingénierie des données, analyse statistique et intelligence artificielle.</p>
 
-    <section>
-        <h2 class="section-header"><i class="fas fa-code-branch"></i> Projets GitHub</h2>
-        <div class="row g-4">
-
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalStreamlit">
-                    <div class="project-icon"><i class="fas fa-dumbbell"></i></div>
-                    <h3 class="project-title">Coach Sportif AI</h3>
-                    <p class="text-muted small">Application web générant des programmes personnalisés.</p>
-                    <div class="tags-container"><span class="badge-tech">Python</span> <span class="badge-tech">Streamlit</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Traitement Big Data & Cloud (Apache Spark)</a>
+                <p class="text-secondary mb-0">Déploiement et traitement de bases de données massives (Big Data) en environnement Cloud. Utilisation des architectures distribuées pour optimiser les temps de calcul sur des volumes de données complexes.</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">Spark</span>
+                    <span class="tech-badge">Cloud Computing</span>
+                    <span class="tech-badge">Big Data</span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalSQL">
-                    <div class="project-icon"><i class="fas fa-database"></i></div>
-                    <h3 class="project-title">Base E-commerce</h3>
-                    <p class="text-muted small">Conception, contraintes DDL et indexation (Sakila).</p>
-                    <div class="tags-container"><span class="badge-tech">SQL</span> <span class="badge-tech">Indexation</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Analyse de Graphes & NoSQL (Neo4j)</a>
+                <p class="text-secondary mb-0">Conception et interrogation d'une base de données orientée graphes. Modélisation de relations complexes et utilisation du langage Cypher pour extraire des schémas cachés dans les données.</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">Neo4j</span>
+                    <span class="tech-badge">NoSQL</span>
+                    <span class="tech-badge">Cypher</span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalScraping">
-                    <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="project-title">Scraping Immo</h3>
-                    <p class="text-muted small">Extraction et analyse du marché immobilier.</p>
-                    <div class="tags-container"><span class="badge-tech">Python</span> <span class="badge-tech">Web Scraping</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Application Web Interactive : Coach Sportif AI</a>
+                <p class="text-secondary mb-0">Création complète d'une application web interactive proposant des menus et graphiques. L'outil génère automatiquement un programme sportif et nutritionnel adapté aux objectifs de l'utilisateur[cite: 29].</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Streamlit</span>
+                    <span class="tech-badge">Dataviz</span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalCAC">
-                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="project-title">Macro & CAC 40</h3>
-                    <p class="text-muted small">Impact macroéconomique sur la bourse (2000-2025).</p>
-                    <div class="tags-container"><span class="badge-tech">Data Management</span> <span class="badge-tech">Finance</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Architecture & Optimisation SQL (E-commerce)</a>
+                <p class="text-secondary mb-0">Conception d'une base de données relationnelle (DDL, contraintes). Analyse des performances via des jointures complexes, des agrégations, et optimisation des requêtes par la création de Vues et d'indexation [cite: 27-28].</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">SQL</span>
+                    <span class="tech-badge">Base Relationnelle</span>
+                    <span class="tech-badge">Indexation</span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalSpark">
-                    <div class="project-icon"><i class="fas fa-cloud"></i></div>
-                    <h3 class="project-title">Big Data & Cloud</h3>
-                    <p class="text-muted small">Traitement de données massives (Apache Spark).</p>
-                    <div class="tags-container"><span class="badge-tech">Spark</span> <span class="badge-tech">Cloud</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Data Management : Impact Macroéconomique sur le CAC 40</a>
+                <p class="text-secondary mb-0">Étude approfondie de l'impact des indicateurs macro-financiers sur les différents secteurs du CAC 40 sur une période de 25 ans (2000-2025)[cite: 32].</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">Finance</span>
+                    <span class="tech-badge">Macroéconomie</span>
+                    <span class="tech-badge">Data Management</span>
                 </div>
             </div>
 
-             <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalNeo4j">
-                    <div class="project-icon"><i class="fas fa-project-diagram"></i></div>
-                    <h3 class="project-title">Graphes Neo4j</h3>
-                    <p class="text-muted small">Modélisation de relations et requêtes Cypher.</p>
-                    <div class="tags-container"><span class="badge-tech">Neo4j</span> <span class="badge-tech">NoSQL</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Analyse du Marché Immobilier par Web Scraping</a>
+                <p class="text-secondary mb-0">Développement de scripts Python pour l'extraction automatique de données depuis des sites web. Nettoyage et analyse de ces données pour dégager des tendances sur le marché immobilier[cite: 30].</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Web Scraping</span>
+                    <span class="tech-badge">Data Cleaning</span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalStata">
-                    <div class="project-icon"><i class="fas fa-stethoscope"></i></div>
-                    <h3 class="project-title">Économétrie Santé</h3>
-                    <p class="text-muted small">Analyse via modèles MCO, Probit et Logit.</p>
-                    <div class="tags-container"><span class="badge-tech">Stata</span> <span class="badge-tech">Statistiques</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Modélisation Économétrique : Santé & Internet (Stata)</a>
+                <p class="text-secondary mb-0">Analyse de l'utilisation d'Internet et des déterminants de l'état de santé en appliquant des modèles économétriques avancés (MCO, MCG, Probit et Logit)[cite: 31].</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">Stata</span>
+                    <span class="tech-badge">Statistiques</span>
+                    <span class="tech-badge">Modèles Logit/Probit</span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card" data-bs-toggle="modal" data-bs-target="#modalVBA">
-                    <div class="project-icon"><i class="fas fa-file-excel"></i></div>
-                    <h3 class="project-title">Outil Boursier VBA</h3>
-                    <p class="text-muted small">Modélisation d'indices financiers sous Excel.</p>
-                    <div class="tags-container"><span class="badge-tech">VBA</span> <span class="badge-tech">Excel</span></div>
+            <div class="project-card">
+                <a href="https://github.com/tomlecorre-cmd?tab=repositories" class="project-title">Modélisation d'un Indice Boursier (VBA)</a>
+                <p class="text-secondary mb-0">Création d'un outil d'aide à la décision sous Excel via VBA pour automatiser la modélisation et le suivi d'un indice boursier[cite: 33].</p>
+                <div class="tech-tags">
+                    <span class="tech-badge">VBA</span>
+                    <span class="tech-badge">Excel Avancé</span>
+                    <span class="tech-badge">Finance</span>
                 </div>
             </div>
 
-        </div>
-    </section>
-</main>
-
-<div class="modal fade" id="modalStreamlit" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Coach Sportif AI</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <h4 style="margin-top:0;">🏃‍♂️ Application Coach Sportif & Nutrition</h4>
-                <p>Bienvenue dans le dépôt de mon application Streamlit. Ce projet vise à fournir des recommandations personnalisées d'exercices et de repas basées sur les objectifs de l'utilisateur.</p>
-                
-                <div class="readme-img-placeholder">[Insérez ici une capture d'écran de l'application Streamlit]</div>
-
-                <h5>🎯 Objectifs du Projet</h5>
-                <ul>
-                    <li>Collecter les données physiologiques de l'utilisateur de manière interactive.</li>
-                    <li>Générer dynamiquement un programme sportif et un plan nutritionnel.</li>
-                    <li>Visualiser les apports caloriques via des graphiques interactifs.</li>
-                </ul>
-
-                <h5>🛠️ Stack Technique</h5>
-                <span class="readme-code">pip install streamlit pandas matplotlib</span>
-
-                <h5>🚀 Utilisation</h5>
-                <p>Pour lancer l'application en local : <br><code>streamlit run app.py</code></p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <div><span class="badge-tech">Python</span><span class="badge-tech">Streamlit</span></div>
-                <a href="https://github.com/tomlecorre-cmd/ton-repo-streamlit" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Code Source sur GitHub</a>
-            </div>
-        </div>
+        </main>
     </div>
 </div>
 
-<div class="modal fade" id="modalSQL" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Base E-commerce</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <h4 style="margin-top:0;">🗄️ Architecture SQL Avancée (Sakila & E-commerce)</h4>
-                <p>Ce projet illustre la conception et l'optimisation complète d'une base de données relationnelle pour le traitement de requêtes complexes liées à des ventes en ligne.</p>
-                
-                <div class="readme-img-placeholder">[Insérez ici le Diagramme Entité-Association (ERD) de la base]</div>
-
-                <h5>🎯 Étapes Clés</h5>
-                <ul>
-                    <li><strong>Conception (DDL) :</strong> Création des tables, clés primaires/étrangères et contraintes.</li>
-                    <li><strong>Manipulation (DML) :</strong> Jointures multiples, sous-requêtes et fonctions d'agrégation.</li>
-                    <li><strong>Optimisation :</strong> Création de Vues pour les rapports récurrents et mise en place d'index pour accélérer les temps de réponse.</li>
-                </ul>
-                
-                <h5>💻 Exemple de Requête Optimisée</h5>
-                <span class="readme-code">CREATE INDEX idx_customer_id ON orders(customer_id);<br>CREATE VIEW v_sales_summary AS...</span>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <div><span class="badge-tech">SQL</span><span class="badge-tech">DDL/DML</span></div>
-                <a href="https://github.com/tomlecorre-cmd/ton-repo-sql" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Voir les Scripts SQL</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalScraping" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title fw-bold"><i class="fab fa-markdown me-2"></i> README.md : Scraping Immo</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <h4 style="margin-top:0;">🏠 Analyse du Marché Immobilier (Web Scraping)</h4>
-                <p>Développement de scripts automatisés pour extraire, nettoyer et analyser les annonces immobilières en ligne afin de dégager des tendances de prix.</p>
-                
-                <div class="readme-img-placeholder">[Insérez ici un graphique des prix de l'immobilier extraits]</div>
-
-                <h5>🛠️ Outils & Bibliothèques</h5>
-                <ul>
-                    <li><code>BeautifulSoup / Scrapy</code> pour l'extraction du DOM HTML.</li>
-                    <li><code>Pandas</code> pour le nettoyage et la structuration en DataFrame.</li>
-                    <li><code>Seaborn / Matplotlib</code> pour la Dataviz.</li>
-                </ul>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <div><span class="badge-tech">Python</span><span class="badge-tech">Pandas</span></div>
-                <a href="https://github.com/tomlecorre-cmd/ton-repo-scraping" target="_blank" class="btn btn-outline-light"><i class="fab fa-github me-2"></i>Code Python</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
