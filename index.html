@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom Le Corre | Data Analyst Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; background-color: #fcfcfc; color: #1a1a1a; }
+        .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+        .nav-link { font-weight: 600; color: #4b5563 !important; }
+        .nav-link:hover { color: #0d6efd !important; }
+        
+        section { padding: 80px 0; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 120px 0 80px; }
+        
+        .card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        .timeline-item { border-left: 3px solid #0d6efd; padding-left: 20px; position: relative; margin-bottom: 40px; }
+        .timeline-item::before { content: ""; position: absolute; width: 12px; height: 12px; background: #0d6efd; border-radius: 50%; left: -8px; top: 5px; }
+        
+        .badge-tech { background: #f1f5f9; color: #475569; border-radius: 20px; padding: 5px 12px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-800 text-primary" href="#">TOM.LC</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#academic">Parcours Scolaire</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experience">Expériences</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projets</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section id="home" class="hero text-center">
+    <div class="container">
+        <h1 class="display-3 fw-800 mb-3">Tom Le Corre</h1>
+        <p class="lead opacity-75 mb-4">Analyse de données & Stratégie Économique</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#projects" class="btn btn-primary px-4 py-2">Découvrir mes projets</a>
+            <a href="./assets/cvdata.pdf" class="btn btn-outline-light px-4 py-2" target="_blank">Télécharger mon CV</a>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="fw-800 mb-4">Bonjour ! 👋</h2>
+                <p class="lead">
+                    Actuellement étudiant, j'ai obtenu une **licence d'économie à l'Université Paris-Panthéon-Assas**[cite: 11, 13]. 
+                    Passionné par l'analyse quantitative et la compréhension des marchés, j'ai choisi de me spécialiser dans la data en intégrant le **D.U. Data Analytics à la Sorbonne**[cite: 7, 8].
+                </p>
+                <p class="text-muted">
+                    Mon objectif est d'allier ma compréhension des enjeux économiques à une expertise technique poussée (Python, SQL, Machine Learning) pour transformer la donnée en levier de croissance[cite: 10, 14].
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="academic" class="bg-light">
+    <div class="container">
+        <h2 class="fw-800 mb-5 text-center">Parcours Scolaire</h2>
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="timeline-item">
+                    <h5 class="fw-bold">D.U. Data Analytics (Niveau Master 1)</h5>
+                    <p class="text-primary mb-1">Université Paris 1 Panthéon-Sorbonne | 2025 - 2026 [cite: 7, 8, 9]</p>
+                    <p class="small text-muted">Spécialisations : Machine Learning, Deep Learning, Spark, SQL, Dataviz[cite: 10].</p>
+                </div>
+                <div class="timeline-item">
+                    <h5 class="fw-bold">Licence Économie-Gestion</h5>
+                    <p class="text-primary mb-1">Université Paris-Panthéon-Assas | 2022 - 2025 [cite: 11, 12, 13]</p>
+                    <p class="small text-muted">Parcours Analyse Économique : Économétrie, Statistiques, Micro/Macroéconomie[cite: 13, 14].</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <h2 class="fw-800 mb-5 text-center">Expériences</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h5 class="fw-bold">Expérience Professionnelle</h5>
+                    <hr>
+                    <p class="mb-1"><strong>Stage Contrôle de Gestion</strong></p>
+                    <p class="text-primary small mb-2">Moulins Soufflet (Invivo) | 2024 [cite: 16, 17, 18]</p>
+                    <ul class="small text-muted">
+                        <li>Analyse de rentabilité (fusion de sites)[cite: 20].</li>
+                        <li>Gestion de bases de données (JDE, SAP, Excel)[cite: 21, 22].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 border-start border-primary border-5">
+                    <h5 class="fw-bold">Expérience Personnelle</h5>
+                    <hr>
+                    <p class="mb-1"><strong>Ouvrier du bâtiment</strong></p>
+                    <p class="text-primary small mb-2">Cygem | Étés 2022 - 2024 [cite: 23, 24]</p>
+                    <p class="small text-muted">Réalisation de fondations et installation de panneaux photovoltaïques. Cette expérience m'a apporté une grande rigueur et le goût du travail en équipe[cite: 25].</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="bg-light">
+    <div class="container">
+        <h2 class="fw-800 mb-5 text-center">Mes Projets Data</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <div class="card-body">
+                        <span class="badge-tech mb-2 d-inline-block">Python & Streamlit</span>
+                        <h5 class="fw-bold">Coach Sportif AI</h5>
+                        <p class="small text-muted">Application interactive générant des programmes nutritionnels personnalisés[cite: 29].</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <div class="card-body">
+                        <span class="badge-tech mb-2 d-inline-block">SQL</span>
+                        <h5 class="fw-bold">Optimisation E-commerce</h5>
+                        <p class="small text-muted">Conception et indexation d'une base de données relationnelle complexe[cite: 27, 28].</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <div class="card-body">
+                        <span class="badge-tech mb-2 d-inline-block">Économétrie</span>
+                        <h5 class="fw-bold">Impact CAC 40</h5>
+                        <p class="small text-muted">Étude des indicateurs macroéconomiques sur les secteurs financiers (2000-2025)[cite: 32].</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-5 bg-dark text-white text-center">
+    <p class="mb-0">Tom Le Corre - 2026 | <a href="mailto:tomlecorre@outlook.fr" class="text-white">tomlecorre@outlook.fr</a> [cite: 1, 3]</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
