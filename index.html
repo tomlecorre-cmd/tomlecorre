@@ -184,6 +184,18 @@
         <div class="content-label">03. Travaux</div>
         <div class="content-body">
             
+            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalQuantML">
+                <div>
+                    <div class="project-icon t-emerald"><i class="fas fa-brain"></i></div>
+                    <span class="project-meta text-emerald">Machine Learning / Finance</span>
+                    <h4>Quant ML & S&P 500</h4>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <p class="small text-muted mb-3">Création et déploiement d'une stratégie de trading systématique prédictive combinant IA, backtesting et valeurs SHAP.</p>
+                    <div class="tag-container mt-0"><span class="tag t-emerald">XGBoost</span> <span class="tag t-emerald">Streamlit</span> <span class="tag t-emerald">Deep Learning</span></div>
+                </div>
+            </div>
+
             <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalCac40">
                 <div>
                     <div class="project-icon t-amber"><i class="fas fa-chart-line"></i></div>
@@ -288,6 +300,64 @@
         <p class="text-muted mb-4">Ouvert aux nouvelles opportunités en Data & Stratégie.</p>
         <a href="mailto:tomlecorre@outlook.fr" style="background-color: var(--text-dark); color: white; padding: 12px 30px; font-size: 1rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s;">Me contacter par Email</a>
     </footer>
+
+    <div class="modal fade" id="modalQuantML" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> Algorithmic Trading & Quant ML : S&P 500</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-preview" style="background-image: url('dashboard_accueil.png'); background-size: cover; background-position: center; border: none;">
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">🎯 Objectif du Projet</h5>
+                            <p class="text-muted small">L'objectif n'était pas de créer une "boule de cristal" financière, mais de concevoir une approche systématique et probabiliste pour modéliser les inefficiences à court terme (J+1) du marché américain (S&P 500). Ce projet couvre l'intégralité du pipeline Data : de l'ingénierie financière avancée jusqu'au déploiement d'un tableau de bord de type production.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">🚧 Rigueur Scientifique & Data Leakage</h5>
+                            <p class="text-muted small">En finance quantitative, l'overfitting est le piège majeur. Pour garantir la fiabilité des prédictions, la méthodologie intègre :</p>
+                            <ul class="text-muted small">
+                                <li><strong>Walk-Forward Validation :</strong> Un entraînement temporel strict garantissant l'absence totale de "fuite de données" (Data Leakage) depuis le futur vers le passé.</li>
+                                <li><strong>Backtesting Réaliste :</strong> Simulation d'un portefeuille dynamique intégrant des frictions de marché (0.1% de frais de transaction systématiques par trade).</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">⚙️ Modélisation : Machine Learning vs Deep Learning</h5>
+                            <p class="text-muted small">Quatre architectures ont été mises en compétition (Random Forest, XGBoost, LSTM et GRU). C'est le modèle <strong>XGBoost (avec régularisation L1+L2)</strong> qui s'est révélé le plus robuste face au "bruit" des marchés financiers, surpassant les réseaux de neurones séquentiels qui tendaient à sur-apprendre.</p>
+
+                            <h5 class="font-display fw-bold mt-4">📈 Performances & Explicabilité (SHAP)</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Surperformance :</strong> Le modèle atteint un Hit Ratio (Précision) de 62.6% et génère un rendement annualisé de 15.02%. L'algorithme réduit fortement le <em>Maximum Drawdown</em> en passant stratégiquement en liquidité ("Cash") lors des signaux baissiers.</li>
+                                <li><strong>Interprétabilité (XAI) :</strong> Déploiement des valeurs SHAP pour isoler le poids décisionnel de chaque indicateur. L'analyse prouve que la macroéconomie (VIX, DXY, Taux) dicte davantage la tendance court terme que l'analyse technique (RSI, MACD).</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">💻 Stack Technique</h5>
+                            <div class="code-box">
+# Data & ML : pandas, numpy, scikit-learn, xgboost, tensorflow (LSTM/GRU)
+# XAI & Explicabilité : shap
+# API & Viz : yfinance, plotly, matplotlib
+# Déploiement Web : streamlit, Streamlit Cloud
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-emerald">Python</span>
+                                <span class="tag t-emerald">XGBoost</span>
+                                <span class="tag t-emerald">LSTM</span>
+                                <span class="tag t-emerald">SHAP</span>
+                                <span class="tag t-emerald">Streamlit</span>
+                            </div>
+                            <div>
+                                <a href="https://machine-learnings-stockmarket.streamlit.app" target="_blank" class="btn-modal mb-3" style="background-color: var(--accent); color: white; width: 100%; text-align: center;"><i class="fas fa-play me-2"></i> Tester l'Application Live</a>
+                                <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-modal" style="width: 100%; text-align: center;"><i class="fab fa-github me-2"></i> Voir sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="modalCac40" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
