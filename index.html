@@ -58,13 +58,22 @@
         .t-purple { background-color: var(--color-purple); color: var(--text-purple); border: 1px solid #DDD6FE; }
         .tag:hover { filter: brightness(0.95); transform: translateY(-1px); }
 
-        .project-item { padding: 40px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; transition: 0.4s; align-items: center; border-radius: 16px; }
+        .project-item { padding: 40px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; transition: 0.4s; align-items: center; border-radius: 16px; position: relative; }
         .project-item:last-child { border-bottom: none; }
         .project-item:hover { background: var(--bg-alt); padding-left: 25px; padding-right: 25px; cursor: pointer; }
         .project-meta { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 8px; display: block; }
         .project-item h4 { font-size: 1.8rem; font-weight: 800; margin: 0; letter-spacing: -1px; transition: 0.3s; }
         .project-item:hover h4 { color: var(--accent); }
         .project-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 15px; }
+
+        /* NOUVEAUX BOUTONS SUR LES CARTES */
+        .action-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; position: relative; z-index: 10; }
+        .btn-card { padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-decoration: none; border: 1px solid var(--border); color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; transition: 0.3s; background: white; cursor: pointer; }
+        .btn-card:hover { border-color: var(--text-dark); color: var(--text-dark); transform: translateY(-2px); }
+        .btn-card.primary { background: var(--text-dark); color: white; border-color: var(--text-dark); }
+        .btn-card.primary:hover { background: var(--accent); border-color: var(--accent); color: white; }
+        .btn-details { border: none; background: transparent; color: var(--accent); padding: 6px 0; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-details:hover { color: var(--text-dark); transform: translateX(3px); }
 
         .modal-content { border-radius: 20px; border: none; box-shadow: 0 25px 50px rgba(0,0,0,0.15); overflow: hidden; }
         .modal-header { border-bottom: 1px solid var(--border); padding: 25px 35px; background-color: white; }
@@ -188,11 +197,17 @@
                 <div>
                     <div class="project-icon t-emerald"><i class="fas fa-brain"></i></div>
                     <span class="project-meta text-emerald">Machine Learning / Finance</span>
-                    <h4>Quant ML & S&P 500</h4>
+                    <h4>Stock Market Prediction via Machine Learning</h4>
                 </div>
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Création et déploiement d'une stratégie de trading systématique prédictive combinant IA, backtesting et valeurs SHAP.</p>
                     <div class="tag-container mt-0"><span class="tag t-emerald">XGBoost</span> <span class="tag t-emerald">Streamlit</span> <span class="tag t-emerald">Deep Learning</span></div>
+                    
+                    <div class="action-btns">
+                        <a href="https://machine-learnings-stockmarket.streamlit.app" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fas fa-play"></i> App Live</a>
+                        <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -205,6 +220,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Analyse de l'impact macro-financier sur les secteurs boursiers via un historique de 25 ans (2000-2025).</p>
                     <div class="tag-container mt-0"><span class="tag t-amber">Finance</span> <span class="tag t-amber">Data Management</span></div>
+                    
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -217,6 +237,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Traitement distribué et analyse de flux de données massifs en architecture Cloud.</p>
                     <div class="tag-container mt-0"><span class="tag t-purple">Apache Spark</span> <span class="tag t-purple">Cloud Computing</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Cloud-Spark" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -229,6 +254,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Création de pipelines automatisés pour l'extraction et le nettoyage de données web immobilières.</p>
                     <div class="tag-container mt-0"><span class="tag t-rose">Python</span> <span class="tag t-rose">BeautifulSoup/Selenium</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Python-French-real-estate-analysis" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -241,6 +271,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Conception de bases de données orientées graphes et extraction d'informations complexes via des requêtes Cypher.</p>
                     <div class="tag-container mt-0"><span class="tag t-blue">Neo4j</span> <span class="tag t-blue">Cypher</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Neo4j" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -253,6 +288,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Modélisation économétrique (MCO) et prédictive (Lasso/Ridge) des prix du marché immobilier.</p>
                     <div class="tag-container mt-0"><span class="tag t-emerald">Python</span> <span class="tag t-emerald">Machine Learning</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie-Immobilier" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -265,6 +305,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Analyse rigoureuse des facteurs déterminants de l'état de santé (Odds Ratios, Logit) à l'aide de données EU-SILC.</p>
                     <div class="tag-container mt-0"><span class="tag t-emerald">Stata</span> <span class="tag t-emerald">Économétrie</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie-Appliqu-e" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -277,6 +322,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Étude économétrique approfondie mesurant l'impact des facteurs socio-démographiques sur l'utilisation d'Internet.</p>
                     <div class="tag-container mt-0"><span class="tag t-emerald">Stata</span> <span class="tag t-emerald">Économétrie</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -289,6 +339,11 @@
                 <div class="d-flex flex-column justify-content-center">
                     <p class="small text-muted mb-3">Application interactive générant des programmes sport/nutrition sur mesure avec export PDF dynamique.</p>
                     <div class="tag-container mt-0"><span class="tag t-blue">Python</span> <span class="tag t-blue">Streamlit</span> <span class="tag t-blue">Dataviz</span></div>
+
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Python-projet" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
                 </div>
             </div>
 
@@ -305,12 +360,12 @@
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> Algorithmic Trading & Quant ML : S&P 500</h5>
+                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> Stock Market Prediction via Machine Learning</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="img-preview" style="background-image: url('dashboard_accueil.png'); background-size: cover; background-position: center; border: none;">
-                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-8">
                             <h5 class="font-display fw-bold mt-4">🎯 Objectif du Projet</h5>
