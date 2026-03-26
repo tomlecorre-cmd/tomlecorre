@@ -378,7 +378,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> PathMNIST : Classification de Tissus Histologiques par Deep Learning</h5>
+                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> Diagnostic Médical par Intelligence Artificielle (PathMNIST)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -388,46 +388,46 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8">
-                            <h5 class="font-display fw-bold mt-4">🎯 Objectif & Résultat Clé</h5>
-                            <p class="text-muted small">Ce projet explore différentes architectures de Deep Learning (de la création de modèles <em>from scratch</em> au Transfer Learning) pour classifier des images microscopiques de tissus du côlon en 9 maladies distinctes (dataset PathMNIST de 100 000 images).<br><br>
-                            <strong>🚀 Le constat majeur :</strong> Notre architecture CNN sur-mesure et légère (391k paramètres) a surpassé les performances d'un modèle ResNet-18 pré-entraîné massif (11M paramètres) avec une précision de <strong>88.30%</strong>.</p>
+                            <h5 class="font-display fw-bold mt-4">🎯 Objectif du Projet</h5>
+                            <p class="text-muted small">Conception d'un système de classification d'images médicales histologiques (dataset PathMNIST). L'objectif n'était pas seulement d'obtenir un modèle performant, mais de comprendre l'impact structurel de différentes architectures de réseaux de neurones (du perceptron classique jusqu'au Vision Transformer) sur la capacité à généraliser l'information spatiale 2D.</p>
                             
-                            <h5 class="font-display fw-bold mt-4">⚙️ Expériences & Modèles Testés</h5>
-                            <p class="text-muted small mb-2">Le projet est structuré en plusieurs phases comparatives :</p>
-                            <ul class="text-muted small mb-4">
-                                <li><strong>Baseline MLP (Réseau Dense) :</strong> Précision bloquée à ~62%. L'aplatissement de l'image (Flatten) détruit la topologie 2D, forçant le modèle à confondre des tissus fibreux aux couleurs similaires (comme le muscle lisse et le stroma).</li>
-                                <li><strong>Custom CNN (Le Gagnant 🏆) :</strong> Modèle optimisé pour lire les images dans leur résolution native (28x28). L'application d'une régularisation agressive (Dropout progressif jusqu'à 0.5) et de Data Augmentation a permis d'atteindre <strong>88.30%</strong>.</li>
-                                <li><strong>Transfer Learning (ResNet-18) :</strong> Malgré 11M de paramètres, la précision plafonne à 86.02%. L'upscaling mathématique obligatoire (de 28x28 vers 224x224) a créé un flou d'interpolation nocif. Le petit CNN est bien plus adapté.</li>
-                                <li><strong>Vision Transformer (ViT) :</strong> Exploration des architectures basées sur l'Attention via le découpage des images en patchs de 7x7.</li>
+                            <h5 class="font-display fw-bold mt-4">⚙️ Évolution Architecturale (Baseline vs CNN vs ViT)</h5>
+                            <p class="text-muted small">La démarche d'ingénierie a suivi une progression logique et comparative :</p>
+                            <ul class="text-muted small">
+                                <li><strong>Réseau Dense (Baseline) :</strong> Démonstration mathématique de son inefficacité sur les images. En "aplatissant" l'image (1D), le modèle détruit la structure spatiale et confond massivement le muscle lisse et le stroma (146 erreurs) qui partagent des dominantes de couleurs similaires.</li>
+                                <li><strong>CNN et Transfer Learning :</strong> Implémentation de couches convolutives locales. L'utilisation de modèles pré-entraînés (ImageNet) a permis d'exploiter l'extraction de <em>low-level features</em> (contours, gradients) universelles, surpassant largement la baseline.</li>
+                                <li><strong>Vision Transformer (ViT) :</strong> Implémentation du State-of-the-Art (modèle basé sur l'attention par patch). L'analyse a prouvé que malgré sa puissance théorique, le ViT est pénalisé ici par la faible résolution des images (28x28) et l'absence de biais inductifs (contrairement aux CNN).</li>
                             </ul>
 
-                            <h5 class="font-display fw-bold mt-4">🔍 Explicabilité (XAI) avec Grad-CAM</h5>
-                            <p class="text-muted small">Pour ouvrir la "boîte noire" de notre meilleur CNN, nous avons généré des <em>Heatmaps</em> (cartes de chaleur) via la technique Grad-CAM. Cela a permis de confirmer visuellement que le modèle prend ses décisions en regardant au bon endroit (les amas cellulaires denses) et non en exploitant des biais de fond de l'image.</p>
+                            <h5 class="font-display fw-bold mt-4">🔍 Explicabilité (XAI) et Éthique avec Grad-CAM</h5>
+                            <p class="text-muted small">Dans le domaine de la santé, un modèle "boîte noire" est inutilisable. J'ai donc implémenté la technique <strong>Grad-CAM</strong> (Gradient-weighted Class Activation Mapping) pour cartographier "où" le modèle regarde pour prendre sa décision. Cela permet d'isoler si l'erreur provient d'un artefact de l'image ou d'une réelle difficulté à distinguer des motifs cellulaires complexes, rendant l'IA interprétable pour un médecin.</p>
 
                             <h5 class="font-display fw-bold mt-4">💻 Stack Technique</h5>
                             <div class="code-box">
 # Framework Deep Learning : PyTorch, Torchvision
-# Datasets & API : MedMNIST (PathMNIST)
-# Architectures testées : MLP, CNNs Custom, ResNet-18, ViT
+# Datasets & DataLoader : MedMNIST (PathMNIST)
+# Architectures : MLP, CNNs, Vision Transformers (ViT)
 # Interprétabilité (XAI) : Grad-CAM
-# Analyse & Viz : Matplotlib, Scikit-learn, NumPy
+# Analyse & Viz : Matplotlib, Seaborn, scikit-learn (Confusion Matrix)
                             </div>
                         </div>
                         <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
                             <div class="tag-container justify-content-end mb-4">
                                 <span class="tag t-purple">PyTorch</span>
-                                <span class="tag t-purple">CNN Custom</span>
-                                <span class="tag t-purple">ResNet-18 / ViT</span>
-                                <span class="tag t-purple">Grad-CAM (XAI)</span>
+                                <span class="tag t-purple">CNN</span>
+                                <span class="tag t-purple">Vision Transformer</span>
+                                <span class="tag t-purple">Transfer Learning</span>
+                                <span class="tag t-purple">Grad-CAM</span>
                             </div>
                             <div>
-                                <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-modal" style="background-color: var(--text-purple); color: white; width: 100%; text-align: center;"><i class="fab fa-github me-2"></i> Voir le code sur GitHub</a>
+                                <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-modal" style="background-color: var(--text-purple); width: 100%; text-align: center;"><i class="fab fa-github me-2"></i> Voir le code sur GitHub</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalQuantML" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -485,6 +485,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalCac40" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -539,6 +540,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalSpark" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -587,6 +589,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalScraping" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -636,6 +639,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalNeo4j" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -685,6 +689,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalImmo" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -736,6 +741,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalSante" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -785,6 +791,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalInternet" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -833,6 +840,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="modalCoach" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -878,6 +886,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
