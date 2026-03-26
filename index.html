@@ -1,66 +1,54 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" alt="PyTorch">
-  <img src="https://img.shields.io/badge/Deep%20Learning-000000?style=for-the-badge" alt="Deep Learning">
-  <img src="https://img.shields.io/badge/Computer%20Vision-0078D4?style=for-the-badge" alt="Computer Vision">
-  <img src="https://img.shields.io/badge/CNN-FF9900?style=for-the-badge" alt="CNN">
-  <img src="https://img.shields.io/badge/ViT-4B32C3?style=for-the-badge" alt="ViT">
-</p>
+<div class="modal fade" id="modalMedicalDL" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> PathMNIST : Classification de Tissus Histologiques par Deep Learning</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-preview" style="background-color: #1E1E1E; border: none; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <i class="fas fa-microscope" style="font-size: 4rem; color: #A855F7; margin-bottom: 15px;"></i>
+                        <h4 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Deep Learning Architecture Pipeline</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">🎯 Objectif & Résultat Clé</h5>
+                            <p class="text-muted small">Ce projet explore différentes architectures de Deep Learning (de la création de modèles <em>from scratch</em> au Transfer Learning) pour classifier des images microscopiques de tissus du côlon en 9 maladies distinctes (dataset PathMNIST de 100 000 images).<br><br>
+                            <strong>🚀 Le constat majeur :</strong> Notre architecture CNN sur-mesure et légère (391k paramètres) a surpassé les performances d'un modèle ResNet-18 pré-entraîné massif (11M paramètres) avec une précision de <strong>88.30%</strong>.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">⚙️ Expériences & Modèles Testés</h5>
+                            <p class="text-muted small mb-2">Le projet est structuré en plusieurs phases comparatives :</p>
+                            <ul class="text-muted small mb-4">
+                                <li><strong>Baseline MLP (Réseau Dense) :</strong> Précision bloquée à ~62%. L'aplatissement de l'image (Flatten) détruit la topologie 2D, forçant le modèle à confondre des tissus fibreux aux couleurs similaires (comme le muscle lisse et le stroma).</li>
+                                <li><strong>Custom CNN (Le Gagnant 🏆) :</strong> Modèle optimisé pour lire les images dans leur résolution native (28x28). L'application d'une régularisation agressive (Dropout progressif jusqu'à 0.5) et de Data Augmentation a permis d'atteindre <strong>88.30%</strong>.</li>
+                                <li><strong>Transfer Learning (ResNet-18) :</strong> Malgré 11M de paramètres, la précision plafonne à 86.02%. L'upscaling mathématique obligatoire (de 28x28 vers 224x224) a créé un flou d'interpolation nocif. Le petit CNN est bien plus adapté.</li>
+                                <li><strong>Vision Transformer (ViT) :</strong> Exploration des architectures basées sur l'Attention via le découpage des images en patchs de 7x7.</li>
+                            </ul>
 
-# 🔬 PathMNIST : Diagnostic Histologique par Intelligence Artificielle
+                            <h5 class="font-display fw-bold mt-4">🔍 Explicabilité (XAI) avec Grad-CAM</h5>
+                            <p class="text-muted small">Pour ouvrir la "boîte noire" de notre meilleur CNN, nous avons généré des <em>Heatmaps</em> (cartes de chaleur) via la technique Grad-CAM. Cela a permis de confirmer visuellement que le modèle prend ses décisions en regardant au bon endroit (les amas cellulaires denses) et non en exploitant des biais de fond de l'image.</p>
 
-Ce projet explore l'évolution architecturale du Deep Learning (du Perceptron Multicouche au Vision Transformer, en passant par le Transfer Learning) pour classifier des images microscopiques de tissus du côlon en 9 pathologies distinctes. 
-
-**🚀 Résultat clé :** L'étude démontre qu'une architecture CNN sur-mesure et légère (391k paramètres) surpasse les performances d'un modèle ResNet-18 pré-entraîné massif (11M paramètres) avec une précision de **88.30%**, prouvant l'importance de l'adéquation entre la capacité d'un modèle et la résolution native des données.
-
-## 📊 Le Dataset (PathMNIST)
-Le dataset utilisé est **PathMNIST** (issu de la collection de référence MedMNIST).
-* **Données :** 100 000 images médicales (coupes histologiques du côlon).
-* **Coloration :** Hématoxyline et Éosine (H&E).
-* **Format :** Images RGB de résolution native 28x28 pixels.
-* **Classes :** 9 catégories (tissus sains, stroma, épithélium tumoral, etc.).
-
-## 🧠 Approche Scientifique & Modèles Testés
-
-Le projet est structuré en une progression de 6 notebooks expérimentaux :
-
-* **1. Baseline MLP (Réseau Dense)**
-  * Modèle de référence mathématique. Précision : ~62%.
-  * *Conclusion :* La couche `Flatten` détruisant la topologie 2D de l'image, le réseau confond les tissus aux couleurs similaires (Stroma vs Muscle Lisse), prouvant la nécessité des convolutions pour l'extraction de textures.
-
-* **2. Custom CNN "From Scratch" (Le Modèle Optimal 🏆)**
-  * Architecture sur-mesure optimisée pour traiter les images dans leur résolution native (28x28) sans interpolation destructrice.
-  * Stratégie de régularisation stricte : `BatchNorm2d`, `MaxPool2d`, et un `Dropout` spatial progressif (0.2 -> 0.5) couplé à de la Data Augmentation.
-  * Précision : **88.30%**.
-
-* **3. Transfer Learning (ResNet-18)**
-  * Comparaison entre l'extraction de caractéristiques (réseau gelé) et le *Full Fine-Tuning*.
-  * *Conclusion :* Malgré une précision de **86.02%**, l'upscaling mathématique obligatoire (28x28 vers 224x224) crée un flou d'interpolation nocif. Le modèle est sur-paramétré pour la tâche.
-
-* **4. Vision Transformer (ViT)**
-  * Implémentation du *State-of-the-Art* basé sur l'Attention (découpage en patchs de 7x7).
-  * *Conclusion :* Bien que théoriquement supérieur, le ViT souffre ici de son manque de "biais inductifs" locaux (contrairement aux CNN) et nécessite des datasets/résolutions beaucoup plus vastes pour exprimer son potentiel.
-
-* **5. Explicabilité (XAI) avec Grad-CAM**
-  * Enjeu éthique majeur en IA médicale : ouvrir la "boîte noire".
-  * Génération de *Heatmaps* (cartes de chaleur des gradients) confirmant que le CNN base ses prédictions sur les structures cellulaires pertinentes (noyaux, amas denses) et non sur des biais visuels de fond.
-
-## 📈 Récapitulatif des Performances
-
-| Architecture | Paramètres | Upscaling requis | Accuracy (Test) |
-|--------------|------------|------------------|-----------------|
-| MLP (Baseline) | ~1.3M | Non | ~62.00% |
-| ResNet-18 (Frozen) | 11M | Oui (224x224) | ~85.00% |
-| ResNet-18 (Unfrozen)| 11M | Oui (224x224) | 86.02% |
-| **Custom CNN (Augmented)** | **391k** | **Non (28x28)** | **88.30%** |
-
-## 💡 Conclusion & Apport Métier
-Ce projet démontre qu'en imagerie médicale, l'utilisation systématique de modèles massifs pré-entraînés sur ImageNet n'est pas la panacée. Une architecture convolutive sur-mesure, dont la capacité paramétrique est parfaitement alignée sur la complexité intrinsèque de la donnée, offre une meilleure efficacité computationnelle et une capacité de généralisation supérieure.
-
-## 🛠️ Stack Technique
-* **Langage :** Python 3
-* **Framework Deep Learning :** PyTorch, Torchvision
-* **Data Science & XAI :** Scikit-learn, Matplotlib, NumPy, Pandas
-* **API :** MedMNIST
-
----
-**Mots-clés / Keywords :** *Deep Learning, Convolutional Neural Networks (CNN), ResNet-18, Vision Transformer (ViT), PyTorch, Grad-CAM, Explainable AI (XAI), Classification d'images médicales, PathMNIST, Histologie, Transfer Learning, Computer Vision.*
+                            <h5 class="font-display fw-bold mt-4">💻 Stack Technique</h5>
+                            <div class="code-box">
+# Framework Deep Learning : PyTorch, Torchvision
+# Datasets & API : MedMNIST (PathMNIST)
+# Architectures testées : MLP, CNNs Custom, ResNet-18, ViT
+# Interprétabilité (XAI) : Grad-CAM
+# Analyse & Viz : Matplotlib, Scikit-learn, NumPy
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-purple">PyTorch</span>
+                                <span class="tag t-purple">CNN Custom</span>
+                                <span class="tag t-purple">ResNet-18 / ViT</span>
+                                <span class="tag t-purple">Grad-CAM (XAI)</span>
+                            </div>
+                            <div>
+                                <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-modal" style="background-color: var(--text-purple); color: white; width: 100%; text-align: center;"><i class="fab fa-github me-2"></i> Voir le code sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
