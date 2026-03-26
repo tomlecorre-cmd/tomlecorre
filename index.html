@@ -66,7 +66,6 @@
         .project-item:hover h4 { color: var(--accent); }
         .project-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 15px; }
 
-        /* NOUVEAUX BOUTONS SUR LES CARTES */
         .action-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; position: relative; z-index: 10; }
         .btn-card { padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-decoration: none; border: 1px solid var(--border); color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; transition: 0.3s; background: white; cursor: pointer; }
         .btn-card:hover { border-color: var(--text-dark); color: var(--text-dark); transform: translateY(-2px); }
@@ -193,6 +192,23 @@
         <div class="content-label">03. Travaux</div>
         <div class="content-body">
             
+            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalMedicalDL">
+                <div>
+                    <div class="project-icon t-purple"><i class="fas fa-microscope"></i></div>
+                    <span class="project-meta text-purple">Computer Vision / Deep Learning</span>
+                    <h4>Diagnostic Médical par IA</h4>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <p class="small text-muted mb-3">Classification d'images histologiques (PathMNIST). Conception allant d'une baseline Dense au Vision Transformer (ViT), avec explicabilité Grad-CAM.</p>
+                    <div class="tag-container mt-0"><span class="tag t-purple">PyTorch</span> <span class="tag t-purple">CNN / ViT</span> <span class="tag t-purple">Grad-CAM</span></div>
+                    
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code Source</a>
+                        <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalQuantML">
                 <div>
                     <div class="project-icon t-emerald"><i class="fas fa-brain"></i></div>
@@ -256,6 +272,7 @@
                     <div class="tag-container mt-0"><span class="tag t-rose">Python</span> <span class="tag t-rose">BeautifulSoup/Selenium</span></div>
 
                     <div class="action-btns">
+                        <a href="#" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fas fa-play"></i> App Live</a>
                         <a href="https://github.com/tomlecorre-cmd/Python-French-real-estate-analysis" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
                         <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
                     </div>
@@ -341,6 +358,7 @@
                     <div class="tag-container mt-0"><span class="tag t-blue">Python</span> <span class="tag t-blue">Streamlit</span> <span class="tag t-blue">Dataviz</span></div>
 
                     <div class="action-btns">
+                        <a href="#" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fas fa-play"></i> App Live</a>
                         <a href="https://github.com/tomlecorre-cmd/Python-projet" target="_blank" class="btn-card" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Code</a>
                         <span class="btn-details"><i class="fas fa-arrow-right"></i> Lire l'étude</span>
                     </div>
@@ -355,6 +373,61 @@
         <p class="text-muted mb-4">Ouvert aux nouvelles opportunités en Data & Stratégie.</p>
         <a href="mailto:tomlecorre@outlook.fr" style="background-color: var(--text-dark); color: white; padding: 12px 30px; font-size: 1rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s;">Me contacter par Email</a>
     </footer>
+
+    <div class="modal fade" id="modalMedicalDL" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> Diagnostic Médical par Intelligence Artificielle (PathMNIST)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-preview" style="background-color: #1E1E1E; border: none; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <i class="fas fa-microscope" style="font-size: 4rem; color: #A855F7; margin-bottom: 15px;"></i>
+                        <h4 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Deep Learning Architecture Pipeline</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">🎯 Objectif du Projet</h5>
+                            <p class="text-muted small">Conception d'un système de classification d'images médicales histologiques (dataset PathMNIST). L'objectif n'était pas seulement d'obtenir un modèle performant, mais de comprendre l'impact structurel de différentes architectures de réseaux de neurones (du perceptron classique jusqu'au Vision Transformer) sur la capacité à généraliser l'information spatiale 2D.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">⚙️ Évolution Architecturale (Baseline vs CNN vs ViT)</h5>
+                            <p class="text-muted small">La démarche d'ingénierie a suivi une progression logique et comparative :</p>
+                            <ul class="text-muted small">
+                                <li><strong>Réseau Dense (Baseline) :</strong> Démonstration mathématique de son inefficacité sur les images. En "aplatissant" l'image (1D), le modèle détruit la structure spatiale et confond massivement le muscle lisse et le stroma (146 erreurs) qui partagent des dominantes de couleurs similaires.</li>
+                                <li><strong>CNN et Transfer Learning :</strong> Implémentation de couches convolutives locales. L'utilisation de modèles pré-entraînés (ImageNet) a permis d'exploiter l'extraction de <em>low-level features</em> (contours, gradients) universelles, surpassant largement la baseline.</li>
+                                <li><strong>Vision Transformer (ViT) :</strong> Implémentation du State-of-the-Art (modèle basé sur l'attention par patch). L'analyse a prouvé que malgré sa puissance théorique, le ViT est pénalisé ici par la faible résolution des images (28x28) et l'absence de biais inductifs (contrairement aux CNN).</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">🔍 Explicabilité (XAI) et Éthique avec Grad-CAM</h5>
+                            <p class="text-muted small">Dans le domaine de la santé, un modèle "boîte noire" est inutilisable. J'ai donc implémenté la technique <strong>Grad-CAM</strong> (Gradient-weighted Class Activation Mapping) pour cartographier "où" le modèle regarde pour prendre sa décision. Cela permet d'isoler si l'erreur provient d'un artefact de l'image ou d'une réelle difficulté à distinguer des motifs cellulaires complexes, rendant l'IA interprétable pour un médecin.</p>
+
+                            <h5 class="font-display fw-bold mt-4">💻 Stack Technique</h5>
+                            <div class="code-box">
+# Framework Deep Learning : PyTorch, Torchvision
+# Datasets & DataLoader : MedMNIST (PathMNIST)
+# Architectures : MLP, CNNs, Vision Transformers (ViT)
+# Interprétabilité (XAI) : Grad-CAM
+# Analyse & Viz : Matplotlib, Seaborn, scikit-learn (Confusion Matrix)
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-purple">PyTorch</span>
+                                <span class="tag t-purple">CNN</span>
+                                <span class="tag t-purple">Vision Transformer</span>
+                                <span class="tag t-purple">Transfer Learning</span>
+                                <span class="tag t-purple">Grad-CAM</span>
+                            </div>
+                            <div>
+                                <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-modal" style="background-color: var(--text-purple); width: 100%; text-align: center;"><i class="fab fa-github me-2"></i> Voir le code sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="modalQuantML" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
