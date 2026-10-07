@@ -1,50 +1,418 @@
-<div class="modal fade" id="modalMLOps" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="font-display fw-bold m-0"><i class="fab fa-markdown me-2" style="color: var(--text-muted);"></i> Prédiction de Défaut de Crédit & Pipeline MLOps</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom Le Corre | Quant & Data Engineering</title>
+    <!-- Polices plus académiques et techniques -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette institutionnelle (Quant/Banque) */
+            --bg-main: #FFFFFF; 
+            --bg-alt: #F8FAFC;         
+            --text-dark: #0F172A; 
+            --text-muted: #475569;     
+            --border: #E2E8F0; 
+            --accent: #1E293B;         
+            --accent-light: #64748B;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-dark); margin: 0; line-height: 1.6; }
+        
+        /* Titres avec une police à empattement pour le côté académique/rigoureux */
+        h1, h2, h3, h4, .font-display { font-family: 'Playfair Display', serif; color: var(--text-dark); }
+        
+        /* Police monospace pour le code et les tags */
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        .top-nav { padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: white; position: sticky; top: 0; z-index: 1000; }
+        .nav-logo { font-size: 1.2rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--text-dark); }
+        .nav-links { display: flex; gap: 35px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: var(--text-dark); }
+
+        .hero-layout { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); background-color: var(--bg-main); }
+        .hero-left { padding: 100px 8%; border-right: 1px solid var(--border); }
+        .hero-right { padding: 100px 8%; display: flex; flex-direction: column; justify-content: center; background-color: var(--bg-alt);}
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.15; margin-bottom: 25px; letter-spacing: -0.5px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 400; line-height: 1.8; }
+        
+        .contact-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 35px; }
+        .contact-btn { padding: 10px 20px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; text-decoration: none; color: var(--text-dark); transition: 0.3s; background: white; display: flex; align-items: center; gap: 8px; }
+        .contact-btn i { color: var(--accent-light); }
+        .contact-btn:hover { border-color: var(--text-dark); background: var(--bg-alt); }
+        .contact-btn.primary { background: var(--text-dark); color: white; border-color: var(--text-dark); }
+        .contact-btn.primary i { color: white; }
+        .contact-btn.primary:hover { background: #000; }
+
+        .content-row { display: grid; grid-template-columns: 300px 1fr; border-bottom: 1px solid var(--border); }
+        .content-label { padding: 60px 8%; font-weight: 600; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); border-right: 1px solid var(--border); background-color: var(--bg-main); }
+        .content-body { padding: 60px 8%; background-color: var(--bg-alt); }
+
+        .edu-block { margin-bottom: 50px; }
+        .edu-block h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 5px; font-family: 'Inter', sans-serif;}
+        .edu-sub { font-size: 0.95rem; color: var(--text-dark); font-weight: 600; margin-bottom: 10px; display: block; }
+        
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        /* Style des tags "Terminal/Code" */
+        .tag { padding: 4px 10px; border: 1px solid var(--border); background: white; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; border-radius: 4px; transition: 0.3s; }
+        .tag:hover { border-color: var(--text-dark); color: var(--text-dark); }
+
+        .project-item { padding: 40px 30px; border: 1px solid var(--border); background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; transition: 0.3s; align-items: center; border-radius: 8px; margin-bottom: 25px; cursor: pointer; }
+        .project-item:hover { border-color: var(--text-dark); box-shadow: 4px 4px 0px rgba(15, 23, 42, 0.05); }
+        .project-meta { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 12px; display: block; color: var(--accent-light); }
+        .project-item h4 { font-size: 1.6rem; font-weight: 700; margin: 0; line-height: 1.3; }
+        
+        .action-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; position: relative; z-index: 10; }
+        .btn-card { padding: 8px 16px; border-radius: 4px; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-decoration: none; border: 1px solid var(--border); color: var(--text-dark); display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; background: white; }
+        .btn-card:hover { border-color: var(--text-dark); background: var(--bg-alt); }
+        .btn-card.primary { background: var(--text-dark); color: white; border-color: var(--text-dark); }
+        .btn-card.primary:hover { background: #000; color: white; }
+        
+        .modal-content { border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .modal-header { border-bottom: 1px solid var(--border); padding: 25px 35px; background-color: var(--bg-main); }
+        .modal-body { padding: 40px; background-color: var(--bg-main); }
+        
+        .code-box { background: #0F172A; color: #E2E8F0; padding: 20px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 15px; overflow-x: auto; white-space: pre-wrap; line-height: 1.6; border: 1px solid #334155; }
+        .code-comment { color: #64748B; }
+        .code-keyword { color: #38BDF8; }
+
+        @media (max-width: 991px) {
+            .hero-layout, .content-row, .project-item { grid-template-columns: 1fr; }
+            .content-label { border-right: none; border-bottom: 1px solid var(--border); padding: 30px 8%; background-color: var(--bg-alt); }
+            .content-body { padding: 40px 8%; }
+            .hero-left { border-right: none; border-bottom: 1px solid var(--border); }
+            .project-item { gap: 20px; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-logo">Tom Le Corre.</div>
+        <div class="nav-links d-none d-md-flex">
+            <a href="#formation">Formation</a>
+            <a href="#experiences">Expériences</a>
+            <a href="#projets">Projets Techniques</a>
+        </div>
+    </nav>
+
+    <section class="hero-layout">
+        <div class="hero-left">
+            <h1 class="hero-title">Quantitative Finance & Data Engineering.</h1>
+            <div class="contact-group">
+                <a href="mailto:tomlecorre@outlook.fr" class="contact-btn"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="contact-btn"><i class="fab fa-github"></i> GitHub</a>
+                <a href="./assets/cv.pdf" target="_blank" class="contact-btn primary"><i class="fas fa-file-pdf"></i> CV</a>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <h5 class="font-display fw-bold mt-4">🎯 Objectif du Projet</h5>
-                        <p class="text-muted small">Conception d'un pipeline d'apprentissage automatique de bout en bout pour le risque de crédit. L'objectif n'était pas seulement d'entraîner un modèle, mais de prouver la capacité à tracker les expérimentations (MLflow) et à packager l'application web finale dans un environnement isolé (Docker).</p>
-                        
-                        <h5 class="font-display fw-bold mt-4">🚧 Rigueur & Data Leakage</h5>
-                        <p class="text-muted small">L'analyse exploratoire (EDA) a révélé des variables biaisées : <code>credit_lines_outstanding</code> (corrélation de 0.86 avec la cible) et <code>total_debt_outstanding</code> (0.75). Ces variables, souvent connues *après* l'octroi du prêt, ont été supprimées du pipeline de preprocessing pour éviter toute fuite de données (Data Leakage) et garantir un modèle robuste en conditions réelles.</p>
+        </div>
+        <div class="hero-right">
+            <p class="hero-subtitle">
+                Étudiant en Master 1 <strong>Statistiques et Économétrie</strong> (Université de Strasbourg) et titulaire d'un DU <strong>Data Analytics</strong> (Panthéon-Sorbonne). <br><br>
+                Je fais le pont entre la théorie économétrique traditionnelle et les architectures modernes de Machine Learning / MLOps pour modéliser le risque et automatiser la décision financière.
+            </p>
+        </div>
+    </section>
 
-                        <h5 class="font-display fw-bold mt-4">⚙️ Tracking MLflow & Modélisation</h5>
-                        <ul class="text-muted small">
-                            <li><strong>Expérimentations :</strong> Benchmark strict entre Régression Logistique (pénalités l1, l2, solver saga), Random Forest (optimisation de la profondeur) et XGBoost.</li>
-                            <li><strong>MLflow Backend :</strong> Utilisation d'une base de données locale SQLite (<code>mlflow.db</code>) pour enregistrer automatiquement les métriques (Accuracy, Precision, Recall, F1-Score) et les hyperparamètres de chaque run.</li>
-                        </ul>
+    <!-- FORMATION -->
+    <div id="formation" class="content-row">
+        <div class="content-label">01. Académique</div>
+        <div class="content-body">
+            <div class="edu-block">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                    <h3>Université de Strasbourg</h3>
+                    <span class="font-mono text-muted small">2026 - 2027</span>
+                </div>
+                <span class="edu-sub">Master 1 Statistiques et Économétrie</span>
+                <p class="small text-muted mb-3">Séries temporelles, Économétrie avancée, Programmation mathématique.</p>
+                <div class="tag-container">
+                    <span class="tag">Time Series</span>
+                    <span class="tag">ARIMA/GARCH</span>
+                    <span class="tag">Économétrie Appliquée</span>
+                </div>
+            </div>
+            
+            <div class="edu-block border-top pt-4 mb-4">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                    <h3>Paris 1 Panthéon-Sorbonne</h3>
+                    <span class="font-mono text-muted small">2025 - 2026</span>
+                </div>
+                <span class="edu-sub">D.U. Data Analytics (Niveau Master 1)</span>
+                <p class="small text-muted mb-3">Déploiement technique, Machine Learning et architectures Big Data.</p>
+                <div class="tag-container">
+                    <span class="tag">MLOps</span>
+                    <span class="tag">Spark</span>
+                    <span class="tag">Neo4j</span>
+                    <span class="tag">Deep Learning</span>
+                </div>
+            </div>
 
-                        <h5 class="font-display fw-bold mt-4">🚀 Déploiement Docker & Streamlit</h5>
-                        <p class="text-muted small">Développement d'un front-end Streamlit à deux facettes : un <em>Leaderboard</em> qui requête directement la base SQLite pour afficher le classement des modèles, et une interface d'<em>Inférence</em> qui utilise le meilleur modèle (XGBoost) pour calculer la probabilité de défaut en direct. Le tout est encapsulé dans une image Docker pour une reproductibilité totale.</p>
+            <div class="edu-block border-top pt-4 mb-0">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                    <h3>Paris 2 Panthéon-Assas</h3>
+                    <span class="font-mono text-muted small">2022 - 2025</span>
+                </div>
+                <span class="edu-sub">Licence Économie-Gestion (Analyse Économique)</span>
+                <div class="tag-container">
+                    <span class="tag">Micro/Macroéconomie</span>
+                    <span class="tag">Théorie des Jeux</span>
+                    <span class="tag">VBA</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <h5 class="font-display fw-bold mt-4">💻 Stack Technique</h5>
-                        <div class="code-box">
-# Modélisation : scikit-learn, XGBoost, StandardScaler
-# MLOps & Tracking : MLflow (avec backend SQLite)
-# Déploiement & UI : Streamlit, Docker
-# Commandes : docker build -t mlops_loan_default . / docker run -p 8501:8501
-                        </div>
+    <!-- EXPERIENCES -->
+    <div id="experiences" class="content-row">
+        <div class="content-label">02. Expériences</div>
+        <div class="content-body">
+            
+            <div class="edu-block">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                    <h3>Cygem</h3>
+                    <span class="font-mono text-muted small">Mai - Juil 2025</span>
+                </div>
+                <span class="edu-sub">Assistant de Gestion</span>
+                <ul class="text-muted small mt-2 mb-0" style="padding-left: 18px;">
+                    <li class="mb-1">Traitement et intégration comptable des factures clients/fournisseurs.</li>
+                    <li class="mb-1">Mise à jour et structuration des bases de prix pour optimiser le chiffrage.</li>
+                    <li>Suivi des approvisionnements et contrôle des inventaires de chantiers.</li>
+                </ul>
+            </div>
+
+            <div class="edu-block border-top pt-4 mb-0">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                    <h3>Moulins Soufflet (Invivo)</h3>
+                    <span class="font-mono text-muted small">Mai - Juil 2024</span>
+                </div>
+                <span class="edu-sub">Stage en Contrôle de Gestion</span>
+                <ul class="text-muted small mt-2 mb-0" style="padding-left: 18px;">
+                    <li class="mb-1">Participation active aux rapports mensuels et à la clôture financière annuelle.</li>
+                    <li class="mb-1">Estimation des coûts et de la rentabilité lors de la fusion de sites de production.</li>
+                    <li>Gestion et extraction de bases de données (Excel/JDE/SAP) pour l'ajustement des prix.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJETS -->
+    <div id="projets" class="content-row">
+        <div class="content-label">03. Ingénierie & Code</div>
+        <div class="content-body">
+            
+            <!-- Projet 1 : VaR / Market Risk -->
+            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalVaR">
+                <div>
+                    <span class="project-meta">Quant / Économétrie</span>
+                    <h4>Hybrid Market Risk Modeling (VaR)</h4>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <p class="small text-muted mb-3">Modèle de risque de marché combinant ARIMA et Quantile Gradient Boosting. Backtesting d'une Value at Risk dynamique à 95% avec validation des seuils de couverture.</p>
+                    <div class="tag-container mt-0">
+                        <span class="tag">ARIMA</span>
+                        <span class="tag">Quantile Boosting</span>
+                        <span class="tag">Python</span>
                     </div>
-                    <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
-                        <div class="tag-container justify-content-end mb-4">
-                            <span class="tag t-purple">MLOps</span>
-                            <span class="tag t-purple">Docker</span>
-                            <span class="tag t-purple">MLflow</span>
-                            <span class="tag t-purple">XGBoost</span>
-                            <span class="tag t-purple">SQLite</span>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
+                        <span class="btn-card" style="border: none; background: transparent;"><i class="fas fa-arrow-right"></i> Détails</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 2 : MLOps Loan Default -->
+            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalMLOps">
+                <div>
+                    <span class="project-meta">MLOps / Credit Risk</span>
+                    <h4>Loan Default Prediction & Docker</h4>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <p class="small text-muted mb-3">Pipeline de classification de bout en bout pour le risque de crédit. Tracking local via MLflow (SQLite) et déploiement du modèle XGBoost sous environnement Docker.</p>
+                    <div class="tag-container mt-0">
+                        <span class="tag">Docker</span>
+                        <span class="tag">MLflow</span>
+                        <span class="tag">XGBoost</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
+                        <span class="btn-card" style="border: none; background: transparent;"><i class="fas fa-arrow-right"></i> Détails</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 3 : CAC 40 ETL -->
+            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalETL">
+                <div>
+                    <span class="project-meta">Data Engineering</span>
+                    <h4>Financial Data Pipeline (CAC 40)</h4>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <p class="small text-muted mb-3">Pipeline ETL multithread synchronisant 20 ans de données boursières (35 actions) et macroéconomiques. Rentabilité log, volatilité glissante et mapping automatisé.</p>
+                    <div class="tag-container mt-0">
+                        <span class="tag">Pandas</span>
+                        <span class="tag">yfinance</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
+                        <span class="btn-card" style="border: none; background: transparent;"><i class="fas fa-arrow-right"></i> Détails</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 4 : Immo / ML -->
+            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalImmo">
+                <div>
+                    <span class="project-meta">Statistiques / Scikit-Learn</span>
+                    <h4>Économétrie & Modélisation Ridge</h4>
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                    <p class="small text-muted mb-3">Analyse des déterminants immobiliers via MCO (tests de robustesse) et modèle prédictif Ridge (L2) minimisant le RMSE hors échantillon.</p>
+                    <div class="tag-container mt-0">
+                        <span class="tag">Statsmodels</span>
+                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">MCO</span>
+                    </div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie-Immobilier" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODALES POUR DETAILS -->
+    
+    <!-- Modal 1 : VaR -->
+    <div class="modal fade" id="modalVaR" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Hybrid Market Risk Modeling & Dynamic VaR Calculation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-2">Architecture Mathématique</h5>
+                            <p class="text-muted small">Conception d'un modèle en deux étapes (Two-Stage Hybrid Model) séparant l'espérance conditionnelle du rendement de sa volatilité extrême sur un portefeuille de 6 majors européennes.</p>
+                            
+                            <ul class="text-muted small">
+                                <li><strong>Dynamique linéaire (ARIMA) :</strong> Filtrage de l'autocorrélation via un ARIMA(1,0,1). Stationnarité validée par test ADF (p-value < 0.001).</li>
+                                <li><strong>Diagnostic des résidus :</strong> Preuve de l'hétéroscédasticité conditionnelle et des "fat tails" via les tests d'Engle (ARCH-LM) et Jarque-Bera.</li>
+                                <li><strong>Régression Quantile (XGBoost) :</strong> Modélisation des résidus en minimisant la <em>Pinball Loss</em> ciblée sur le 5ème centile (alpha=0.05), avec intégration de variables macroéconomiques décalées (T-1).</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Résultats du Backtesting</h5>
+                            <p class="text-muted small">Testé sur un échantillon hors-entraînement de 577 jours, le modèle démontre un taux de dépassement (Hit Rate) de <strong>2.95%</strong> pour une cible théorique fixée réglementairement à 5.00%, validant sa robustesse face aux chocs extrêmes.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Stack & Librairies</h5>
+                            <div class="code-box">
+<span class="code-comment"># Modélisation Linéaire & Tests Économétriques</span>
+<span class="code-keyword">import</span> statsmodels.tsa.arima.model <span class="code-keyword">as</span> arima
+<span class="code-keyword">import</span> statsmodels.stats.diagnostic <span class="code-keyword">as</span> diag
+
+<span class="code-comment"># ML Non-Linéaire (Quantile)</span>
+<span class="code-keyword">from</span> sklearn.ensemble <span class="code-keyword">import</span> GradientBoostingRegressor
+model = GradientBoostingRegressor(loss=<span class="code-keyword">'quantile'</span>, alpha=<span class="code-keyword">0.05</span>)
+                            </div>
                         </div>
-                        <div>
-                            <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-modal" style="background-color: var(--text-purple); width: 100%; text-align: center;"><i class="fab fa-github me-2"></i> Voir le code sur GitHub</a>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-card primary w-100 justify-content-center"><i class="fab fa-github"></i> Voir le Code Source</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Modal 2 : MLOps -->
+    <div class="modal fade" id="modalMLOps" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Loan Default Prediction & MLOps Pipeline</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-2">Ingénierie du Risque & Pipeline</h5>
+                            <p class="text-muted small">Pipeline de classification de bout en bout pour le risque de crédit. Analyse exploratoire stricte ayant mené à l'exclusion de features corrélées (>0.75) afin d'empêcher un biais critique de fuite de données temporelles (Data Leakage).</p>
+                            
+                            <ul class="text-muted small">
+                                <li><strong>Experiment Tracking :</strong> Benchmark systématique (Logistic Regression, Random Forest, XGBoost) loggé en local via MLflow (Backend SQLite).</li>
+                                <li><strong>Containerisation :</strong> Application web complète embarquée dans une image Docker isolée pour garantir la reproductibilité totale des environnements.</li>
+                                <li><strong>Déploiement Streamlit :</strong> Interface duale proposant un Leaderboard des métriques (requêtes directes sur mlflow.db) et un module d'inférence en temps réel exploitant le modèle optimal.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack & Architecture</h5>
+                            <div class="code-box">
+<span class="code-comment"># Build & Run de l'infrastructure</span>
+<span class="code-keyword">docker build</span> -t mlops_loan_default .
+<span class="code-keyword">docker run</span> -p 8501:8501 mlops_loan_default
+
+<span class="code-comment"># Stack interne</span>
+scikit-learn, xgboost, mlflow, streamlit, sqlite3
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-card primary w-100 justify-content-center"><i class="fab fa-github"></i> Voir le Code Source</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 : ETL CAC40 -->
+    <div class="modal fade" id="modalETL" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Multithreaded ETL & Financial Data Management</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-2">Architecture du Pipeline</h5>
+                            <p class="text-muted small">Développement d'un pipeline ETL (Extract, Transform, Load) automatisé pour synchroniser des données financières hétérogènes : 20 ans d'historique boursier pour 35 valeurs du CAC 40 et 12 indicateurs macro-économiques (VIX, Brent, EUR/USD).</p>
+                            
+                            <ul class="text-muted small">
+                                <li><strong>Ingestion Optimisée :</strong> Utilisation de requêtes API asynchrones/multithreads (yfinance) pour gérer la volumétrie sans timeout.</li>
+                                <li><strong>Feature Engineering :</strong> Calcul automatisé de métriques quantitatives (Rentabilités logarithmiques pour stationnarité, Volatilité Glissante, rebasage base 100).</li>
+                                <li><strong>Logique Métier :</strong> Développement d'un algorithme de mapping sectoriel liant dynamiquement chaque actif à son facteur macro-économique principal.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack & Librairies</h5>
+                            <div class="code-box">
+<span class="code-comment"># Ingestion & Traitement</span>
+<span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">import</span> yfinance <span class="code-keyword">as</span> yf
+
+<span class="code-comment"># Visualisation Front-End & NLP</span>
+<span class="code-keyword">import</span> streamlit <span class="code-keyword">as</span> st
+<span class="code-keyword">import</span> plotly.graph_objects <span class="code-keyword">as</span> go
+<span class="code-keyword">from</span> bs4 <span class="code-keyword">import</span> BeautifulSoup
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-card primary w-100 justify-content-center"><i class="fab fa-github"></i> Voir le Code Source</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
