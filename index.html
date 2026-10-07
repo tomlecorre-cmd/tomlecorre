@@ -3,90 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tom Le Corre | Quant & Data Engineering</title>
-    <!-- Polices plus académiques et techniques -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Tom Le Corre | Modélisation Statistique & Data Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         :root {
-            /* Palette institutionnelle (Quant/Banque) */
-            --bg-main: #FFFFFF; 
-            --bg-alt: #F8FAFC;         
-            --text-dark: #0F172A; 
-            --text-muted: #475569;     
-            --border: #E2E8F0; 
-            --accent: #1E293B;         
-            --accent-light: #64748B;
+            --bg-main: #FFFFFF; --bg-alt: #F8FAFC;         
+            --text-dark: #0F172A; --text-muted: #475569;     
+            --border: #E2E8F0; --accent: #2563EB;         
+            
+            --color-blue: #E0F2FE; --text-blue: #0284C7;
+            --color-emerald: #D1FAE5; --text-emerald: #059669;
+            --color-amber: #FEF3C7; --text-amber: #D97706;
+            --color-rose: #FFE4E6; --text-rose: #E11D48;
+            --color-purple: #EDE9FE; --text-purple: #7C3AED;
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-dark); margin: 0; line-height: 1.6; }
-        
-        /* Titres avec une police à empattement pour le côté académique/rigoureux */
-        h1, h2, h3, h4, .font-display { font-family: 'Playfair Display', serif; color: var(--text-dark); }
-        
-        /* Police monospace pour le code et les tags */
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-alt); color: var(--text-dark); margin: 0; line-height: 1.6; }
+        h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); }
 
-        .top-nav { padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: white; position: sticky; top: 0; z-index: 1000; }
-        .nav-logo { font-size: 1.2rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--text-dark); }
-        .nav-links { display: flex; gap: 35px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .nav-links a:hover { color: var(--text-dark); }
+        .top-nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: white; position: sticky; top: 0; z-index: 1000; }
+        .nav-logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -1px; color: var(--text-dark); }
 
-        .hero-layout { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); background-color: var(--bg-main); }
-        .hero-left { padding: 100px 8%; border-right: 1px solid var(--border); }
-        .hero-right { padding: 100px 8%; display: flex; flex-direction: column; justify-content: center; background-color: var(--bg-alt);}
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.15; margin-bottom: 25px; letter-spacing: -0.5px; }
-        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 400; line-height: 1.8; }
+        /* HEADER / HERO */
+        .hero-section { background-color: white; padding: 60px 40px; border-bottom: 1px solid var(--border); }
+        .hero-title { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; }
         
-        .contact-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 35px; }
-        .contact-btn { padding: 10px 20px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; text-decoration: none; color: var(--text-dark); transition: 0.3s; background: white; display: flex; align-items: center; gap: 8px; }
-        .contact-btn i { color: var(--accent-light); }
-        .contact-btn:hover { border-color: var(--text-dark); background: var(--bg-alt); }
-        .contact-btn.primary { background: var(--text-dark); color: white; border-color: var(--text-dark); }
-        .contact-btn.primary i { color: white; }
-        .contact-btn.primary:hover { background: #000; }
+        .contact-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .contact-btn { padding: 10px 20px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; text-decoration: none; color: var(--text-dark); font-weight: 600; background: white; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .contact-btn:hover { border-color: var(--text-dark); }
 
-        .content-row { display: grid; grid-template-columns: 300px 1fr; border-bottom: 1px solid var(--border); }
-        .content-label { padding: 60px 8%; font-weight: 600; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); border-right: 1px solid var(--border); background-color: var(--bg-main); }
-        .content-body { padding: 60px 8%; background-color: var(--bg-alt); }
-
-        .edu-block { margin-bottom: 50px; }
-        .edu-block h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 5px; font-family: 'Inter', sans-serif;}
-        .edu-sub { font-size: 0.95rem; color: var(--text-dark); font-weight: 600; margin-bottom: 10px; display: block; }
+        /* TWO-COLUMN LAYOUT */
+        .main-layout { display: grid; grid-template-columns: 380px 1fr; gap: 40px; padding: 40px; max-width: 1600px; margin: 0 auto; align-items: start; }
         
-        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-        /* Style des tags "Terminal/Code" */
-        .tag { padding: 4px 10px; border: 1px solid var(--border); background: white; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; border-radius: 4px; transition: 0.3s; }
-        .tag:hover { border-color: var(--text-dark); color: var(--text-dark); }
-
-        .project-item { padding: 40px 30px; border: 1px solid var(--border); background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; transition: 0.3s; align-items: center; border-radius: 8px; margin-bottom: 25px; cursor: pointer; }
-        .project-item:hover { border-color: var(--text-dark); box-shadow: 4px 4px 0px rgba(15, 23, 42, 0.05); }
-        .project-meta { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 12px; display: block; color: var(--accent-light); }
-        .project-item h4 { font-size: 1.6rem; font-weight: 700; margin: 0; line-height: 1.3; }
+        /* LEFT COLUMN (Sticky) */
+        .sidebar { background: white; padding: 30px; border-radius: 16px; border: 1px solid var(--border); position: sticky; top: 100px; }
+        .sidebar-section { margin-bottom: 40px; }
+        .sidebar-section:last-child { margin-bottom: 0; }
+        .sidebar-title { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
         
-        .action-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; position: relative; z-index: 10; }
-        .btn-card { padding: 8px 16px; border-radius: 4px; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-decoration: none; border: 1px solid var(--border); color: var(--text-dark); display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; background: white; }
-        .btn-card:hover { border-color: var(--text-dark); background: var(--bg-alt); }
+        .timeline-item { margin-bottom: 25px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-date { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 2px; }
+        .timeline-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 5px 0; }
+        .timeline-org { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .timeline-desc { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+        
+        .certif-list { list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+        .certif-list li { margin-bottom: 10px; padding-left: 15px; position: relative; }
+        .certif-list li::before { content: "•"; position: absolute; left: 0; color: var(--text-dark); font-weight: bold; }
+
+        /* RIGHT COLUMN (Projects Grid) */
+        .projects-container { background: transparent; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        
+        .project-item { padding: 25px; border: 1px solid var(--border); background: white; border-radius: 12px; display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; }
+        .project-item:hover { border-color: var(--text-dark); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transform: translateY(-3px); }
+        .project-meta { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 10px; display: block; color: var(--text-muted); }
+        .project-item h4 { font-size: 1.3rem; font-weight: 800; margin: 0 0 10px 0; line-height: 1.2; }
+        .project-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+
+        .tag-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+        .tag { padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border); }
+
+        .action-btns { display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap; }
+        .btn-card { padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; text-decoration: none; border: 1px solid var(--border); color: var(--text-dark); display: inline-flex; align-items: center; gap: 6px; background: white; }
+        .btn-card:hover { background: var(--bg-alt); color: var(--text-dark); }
         .btn-card.primary { background: var(--text-dark); color: white; border-color: var(--text-dark); }
         .btn-card.primary:hover { background: #000; color: white; }
-        
-        .modal-content { border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
-        .modal-header { border-bottom: 1px solid var(--border); padding: 25px 35px; background-color: var(--bg-main); }
-        .modal-body { padding: 40px; background-color: var(--bg-main); }
-        
-        .code-box { background: #0F172A; color: #E2E8F0; padding: 20px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 15px; overflow-x: auto; white-space: pre-wrap; line-height: 1.6; border: 1px solid #334155; }
-        .code-comment { color: #64748B; }
-        .code-keyword { color: #38BDF8; }
 
-        @media (max-width: 991px) {
-            .hero-layout, .content-row, .project-item { grid-template-columns: 1fr; }
-            .content-label { border-right: none; border-bottom: 1px solid var(--border); padding: 30px 8%; background-color: var(--bg-alt); }
-            .content-body { padding: 40px 8%; }
-            .hero-left { border-right: none; border-bottom: 1px solid var(--border); }
-            .project-item { gap: 20px; padding: 25px; }
+        /* MODALS */
+        .modal-content { border-radius: 16px; border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .modal-header { border-bottom: 1px solid var(--border); padding: 25px 35px; background-color: white; }
+        .modal-body { padding: 35px; }
+        .code-box { background: #0F172A; color: #38BDF8; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; margin-top: 15px; overflow-x: auto; white-space: pre-wrap; line-height: 1.5; }
+        
+        /* Modal Tags */
+        .t-blue { background-color: var(--color-blue); color: var(--text-blue); border: 1px solid #BAE6FD; }
+        .t-emerald { background-color: var(--color-emerald); color: var(--text-emerald); border: 1px solid #A7F3D0; }
+        .t-amber { background-color: var(--color-amber); color: var(--text-amber); border: 1px solid #FDE68A; }
+        .t-rose { background-color: var(--color-rose); color: var(--text-rose); border: 1px solid #FECDD3; }
+        .t-purple { background-color: var(--color-purple); color: var(--text-purple); border: 1px solid #DDD6FE; }
+
+        @media (max-width: 1024px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; margin-bottom: 40px; }
         }
     </style>
 </head>
@@ -94,237 +98,295 @@
 
     <nav class="top-nav">
         <div class="nav-logo">Tom Le Corre.</div>
-        <div class="nav-links d-none d-md-flex">
-            <a href="#formation">Formation</a>
-            <a href="#experiences">Expériences</a>
-            <a href="#projets">Projets Techniques</a>
-        </div>
     </nav>
 
-    <section class="hero-layout">
-        <div class="hero-left">
-            <h1 class="hero-title">Quantitative Finance & Data Engineering.</h1>
-            <div class="contact-group">
-                <a href="mailto:tomlecorre@outlook.fr" class="contact-btn"><i class="fas fa-envelope"></i> Email</a>
-                <a href="https://github.com/tomlecorre-cmd" target="_blank" class="contact-btn"><i class="fab fa-github"></i> GitHub</a>
-                <a href="./assets/cv.pdf" target="_blank" class="contact-btn primary"><i class="fas fa-file-pdf"></i> CV</a>
-            </div>
-        </div>
-        <div class="hero-right">
-            <p class="hero-subtitle">
-                Étudiant en Master 1 <strong>Statistiques et Économétrie</strong> (Université de Strasbourg) et titulaire d'un DU <strong>Data Analytics</strong> (Panthéon-Sorbonne). <br><br>
-                Je fais le pont entre la théorie économétrique traditionnelle et les architectures modernes de Machine Learning / MLOps pour modéliser le risque et automatiser la décision financière.
-            </p>
+    <section class="hero-section">
+        <h1 class="hero-title">Modélisation Statistique<br>& Data Science.</h1>
+        <p class="hero-subtitle">
+            Diplômé d'une Licence en Économie (Panthéon-Assas) et d'un DU <strong>Data Analytics</strong> (Panthéon-Sorbonne), je suis actuellement en Master 1 <strong>Statistiques et Économétrie</strong> à l'Université de Strasbourg. Fort de ce profil aux multiples casquettes, j'allie compréhension des enjeux économiques, modélisation statistique et ingénierie de la donnée. Je déploie des algorithmes de Machine Learning et de Deep Learning pour résoudre des problématiques complexes, de la modélisation des risques à la prédiction financière.
+        </p>
+        <div class="contact-group">
+            <a href="mailto:tomlecorre@outlook.fr" class="contact-btn"><i class="fas fa-envelope"></i> tomlecorre@outlook.fr</a>
+            <span class="contact-btn"><i class="fas fa-phone"></i> +33 7 89 58 42 25</span>
+            <a href="https://github.com/tomlecorre-cmd" target="_blank" class="contact-btn"><i class="fab fa-github"></i> GitHub</a>
+            <a href="./assets/cvdata.pdf" target="_blank" class="contact-btn" style="background: var(--text-dark); color: white;"><i class="fas fa-file-pdf"></i> Télécharger CV</a>
         </div>
     </section>
 
-    <!-- FORMATION -->
-    <div id="formation" class="content-row">
-        <div class="content-label">01. Académique</div>
-        <div class="content-body">
-            <div class="edu-block">
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                    <h3>Université de Strasbourg</h3>
-                    <span class="font-mono text-muted small">2026 - 2027</span>
-                </div>
-                <span class="edu-sub">Master 1 Statistiques et Économétrie</span>
-                <p class="small text-muted mb-3">Séries temporelles, Économétrie avancée, Programmation mathématique.</p>
-                <div class="tag-container">
-                    <span class="tag">Time Series</span>
-                    <span class="tag">ARIMA/GARCH</span>
-                    <span class="tag">Économétrie Appliquée</span>
-                </div>
-            </div>
+    <div class="main-layout">
+        
+        <!-- COLONNE GAUCHE (Formation & Expérience) -->
+        <aside class="sidebar">
             
-            <div class="edu-block border-top pt-4 mb-4">
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                    <h3>Paris 1 Panthéon-Sorbonne</h3>
-                    <span class="font-mono text-muted small">2025 - 2026</span>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Formation</h3>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">2026 - 2027</span>
+                    <h4 class="timeline-title">Master 1 Statistiques et Économétrie</h4>
+                    <div class="timeline-org">Université de Strasbourg</div>
+                    <p class="timeline-desc">Économétrie appliquée I & II, Économétrie avancée I & II, Séries temporelles, Techniques de programmation, Politique économique, Interactions stratégiques et marchés.</p>
                 </div>
-                <span class="edu-sub">D.U. Data Analytics (Niveau Master 1)</span>
-                <p class="small text-muted mb-3">Déploiement technique, Machine Learning et architectures Big Data.</p>
-                <div class="tag-container">
-                    <span class="tag">MLOps</span>
-                    <span class="tag">Spark</span>
-                    <span class="tag">Neo4j</span>
-                    <span class="tag">Deep Learning</span>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">2025 - 2026</span>
+                    <h4 class="timeline-title">D.U. Data Analytics (Niveau Master 1)</h4>
+                    <div class="timeline-org">Paris 1 Panthéon-Sorbonne</div>
+                    <p class="timeline-desc">SQL, Python, Data Mining, Machine Learning, Deep Learning, Generative AI, MLOps, Spark, Neo4j, Dataviz.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">2022 - 2025</span>
+                    <h4 class="timeline-title">Licence Économie-Gestion</h4>
+                    <div class="timeline-org">Université Paris-Panthéon-Assas</div>
+                    <p class="timeline-desc">Parcours Analyse Économique. Analyse de données, Microéconomie, Macroéconomie, Statistiques, Économétrie, Théorie des Jeux, Python, VBA.</p>
                 </div>
             </div>
 
-            <div class="edu-block border-top pt-4 mb-0">
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                    <h3>Paris 2 Panthéon-Assas</h3>
-                    <span class="font-mono text-muted small">2022 - 2025</span>
-                </div>
-                <span class="edu-sub">Licence Économie-Gestion (Analyse Économique)</span>
-                <div class="tag-container">
-                    <span class="tag">Micro/Macroéconomie</span>
-                    <span class="tag">Théorie des Jeux</span>
-                    <span class="tag">VBA</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- EXPERIENCES -->
-    <div id="experiences" class="content-row">
-        <div class="content-label">02. Expériences</div>
-        <div class="content-body">
-            
-            <div class="edu-block">
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                    <h3>Cygem</h3>
-                    <span class="font-mono text-muted small">Mai - Juil 2025</span>
-                </div>
-                <span class="edu-sub">Assistant de Gestion</span>
-                <ul class="text-muted small mt-2 mb-0" style="padding-left: 18px;">
-                    <li class="mb-1">Traitement et intégration comptable des factures clients/fournisseurs.</li>
-                    <li class="mb-1">Mise à jour et structuration des bases de prix pour optimiser le chiffrage.</li>
-                    <li>Suivi des approvisionnements et contrôle des inventaires de chantiers.</li>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Certifications</h3>
+                <ul class="certif-list">
+                    <li><strong>United Nations (UN) :</strong> Integrating Business and Trade Statistics</li>
+                    <li><strong>Dataiku :</strong> ML Practitioner, MLOps Practitioner, Generative AI</li>
                 </ul>
             </div>
 
-            <div class="edu-block border-top pt-4 mb-0">
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                    <h3>Moulins Soufflet (Invivo)</h3>
-                    <span class="font-mono text-muted small">Mai - Juil 2024</span>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Expériences</h3>
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">Mai - Juillet 2025</span>
+                    <h4 class="timeline-title">Assistant de Gestion</h4>
+                    <div class="timeline-org">Cygem</div>
+                    <p class="timeline-desc">Préparation comptable. Structuration de bases de données : mise à jour des bases de prix fournisseurs pour optimiser le chiffrage. Gestion des stocks et inventaires de chantiers.</p>
                 </div>
-                <span class="edu-sub">Stage en Contrôle de Gestion</span>
-                <ul class="text-muted small mt-2 mb-0" style="padding-left: 18px;">
-                    <li class="mb-1">Participation active aux rapports mensuels et à la clôture financière annuelle.</li>
-                    <li class="mb-1">Estimation des coûts et de la rentabilité lors de la fusion de sites de production.</li>
-                    <li>Gestion et extraction de bases de données (Excel/JDE/SAP) pour l'ajustement des prix.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <!-- PROJETS -->
-    <div id="projets" class="content-row">
-        <div class="content-label">03. Ingénierie & Code</div>
-        <div class="content-body">
-            
-            <!-- Projet 1 : VaR / Market Risk -->
-            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalVaR">
-                <div>
-                    <span class="project-meta">Quant / Économétrie</span>
+                <div class="timeline-item">
+                    <span class="timeline-date">Mai - Juillet 2024</span>
+                    <h4 class="timeline-title">Stage Contrôle de Gestion</h4>
+                    <div class="timeline-org">Moulins Soufflet (Invivo Group)</div>
+                    <p class="timeline-desc">Collecte et audit de données sensibles. Suivi des performances financières et analyse de rentabilité. Data Management : gestion rigoureuse de bases de données (Excel/JDE/SAP) pour ajuster les prix des contrats.</p>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- COLONNE DROITE (Projets) -->
+        <main class="projects-container">
+            <div class="projects-grid">
+
+                <!-- Projet : VaR -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalVaR">
+                    <span class="project-meta text-emerald">Séries Temporelles / ML</span>
                     <h4>Hybrid Market Risk Modeling (VaR)</h4>
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                    <p class="small text-muted mb-3">Modèle de risque de marché combinant ARIMA et Quantile Gradient Boosting. Backtesting d'une Value at Risk dynamique à 95% avec validation des seuils de couverture.</p>
-                    <div class="tag-container mt-0">
-                        <span class="tag">ARIMA</span>
-                        <span class="tag">Quantile Boosting</span>
-                        <span class="tag">Python</span>
-                    </div>
+                    <p class="project-desc">Modèle de risque de marché combinant ARIMA(1,0,1) et Quantile Gradient Boosting. Backtesting d'une Value at Risk dynamique à 95%.</p>
+                    <div class="tag-container"><span class="tag">ARIMA</span> <span class="tag">XGBoost Quantile</span></div>
                     <div class="action-btns">
-                        <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
-                        <span class="btn-card" style="border: none; background: transparent;"><i class="fas fa-arrow-right"></i> Détails</span>
+                        <a href="https://github.com/tomlecorre-cmd/ML_Mod-lisation_Var" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Projet 2 : MLOps Loan Default -->
-            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalMLOps">
-                <div>
-                    <span class="project-meta">MLOps / Credit Risk</span>
-                    <h4>Loan Default Prediction & Docker</h4>
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                    <p class="small text-muted mb-3">Pipeline de classification de bout en bout pour le risque de crédit. Tracking local via MLflow (SQLite) et déploiement du modèle XGBoost sous environnement Docker.</p>
-                    <div class="tag-container mt-0">
-                        <span class="tag">Docker</span>
-                        <span class="tag">MLflow</span>
-                        <span class="tag">XGBoost</span>
-                        <span class="tag">Streamlit</span>
-                    </div>
+                <!-- Projet : MLOps Loan Default -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalMLOps">
+                    <span class="project-meta text-purple">MLOps / Ingénierie Financière</span>
+                    <h4>Loan Default Prediction</h4>
+                    <p class="project-desc">Pipeline de classification pour le risque de crédit. Traitement du data leakage, tracking local via MLflow et déploiement XGBoost sous Docker.</p>
+                    <div class="tag-container"><span class="tag">Docker</span> <span class="tag">MLflow</span> <span class="tag">XGBoost</span></div>
                     <div class="action-btns">
-                        <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
-                        <span class="btn-card" style="border: none; background: transparent;"><i class="fas fa-arrow-right"></i> Détails</span>
+                        <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Projet 3 : CAC 40 ETL -->
-            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalETL">
-                <div>
-                    <span class="project-meta">Data Engineering</span>
-                    <h4>Financial Data Pipeline (CAC 40)</h4>
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                    <p class="small text-muted mb-3">Pipeline ETL multithread synchronisant 20 ans de données boursières (35 actions) et macroéconomiques. Rentabilité log, volatilité glissante et mapping automatisé.</p>
-                    <div class="tag-container mt-0">
-                        <span class="tag">Pandas</span>
-                        <span class="tag">yfinance</span>
-                        <span class="tag">NLP</span>
-                    </div>
+                <!-- Projet : CAC 40 -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalCac40">
+                    <span class="project-meta text-amber">Data Engineering / Finance</span>
+                    <h4>Financial Data Pipeline</h4>
+                    <p class="project-desc">ETL multithread synchronisant 20 ans de données boursières (CAC 40) et macroéconomiques. Rentabilité logarithmique et volatilité glissante.</p>
+                    <div class="tag-container"><span class="tag">Pandas</span> <span class="tag">yFinance</span></div>
                     <div class="action-btns">
-                        <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
-                        <span class="btn-card" style="border: none; background: transparent;"><i class="fas fa-arrow-right"></i> Détails</span>
+                        <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Projet 4 : Immo / ML -->
-            <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalImmo">
-                <div>
-                    <span class="project-meta">Statistiques / Scikit-Learn</span>
-                    <h4>Économétrie & Modélisation Ridge</h4>
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                    <p class="small text-muted mb-3">Analyse des déterminants immobiliers via MCO (tests de robustesse) et modèle prédictif Ridge (L2) minimisant le RMSE hors échantillon.</p>
-                    <div class="tag-container mt-0">
-                        <span class="tag">Statsmodels</span>
-                        <span class="tag">Scikit-Learn</span>
-                        <span class="tag">MCO</span>
-                    </div>
+                <!-- Projet : Stock Market -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalQuantML">
+                    <span class="project-meta text-emerald">Séries Temporelles / ML</span>
+                    <h4>Stock Market Prediction</h4>
+                    <p class="project-desc">Stratégie de trading systématique prédictive combinant modèles de machine learning, backtesting et explicabilité via valeurs SHAP.</p>
+                    <div class="tag-container"><span class="tag">XGBoost</span> <span class="tag">Streamlit</span> <span class="tag">SHAP</span></div>
                     <div class="action-btns">
-                        <a href="https://github.com/tomlecorre-cmd/Econom-trie-Immobilier" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fab fa-github"></i> Repository</a>
+                        <a href="https://machine-learnings-stockmarket.streamlit.app" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fas fa-play"></i> App Live</a>
+                        <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-card" onclick="event.stopPropagation();">Code</a>
+                        <span class="btn-card" style="border:none; padding:6px 0;">Détails</span>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- Projet : Generative AI -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalGenAI">
+                    <span class="project-meta text-blue">LLM / Python</span>
+                    <h4>Grands Modèles de Langage</h4>
+                    <p class="project-desc">Implémentation et expérimentation autour des modèles génératifs. Traitement du langage naturel, intégration d'API et optimisation de prompts.</p>
+                    <div class="tag-container"><span class="tag">LLM</span> <span class="tag">Python</span> <span class="tag">NLP</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Generative-IA-projets" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Immo -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalImmo">
+                    <span class="project-meta text-emerald">Statistiques / Machine Learning</span>
+                    <h4>Déterminants Prix Immobilier</h4>
+                    <p class="project-desc">Modélisation économétrique (MCO avec tests de robustesse) et prédictive (Lasso/Ridge) des prix du marché immobilier.</p>
+                    <div class="tag-container"><span class="tag">Scikit-Learn</span> <span class="tag">Statsmodels</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie-Immobilier" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Medical DL -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalMedicalDL">
+                    <span class="project-meta text-purple">Deep Learning / Vision</span>
+                    <h4>Diagnostic Médical par Deep Learning</h4>
+                    <p class="project-desc">Classification d'images histologiques (PathMNIST). Architectures CNN et Vision Transformer (ViT), avec explicabilité Grad-CAM.</p>
+                    <div class="tag-container"><span class="tag">PyTorch</span> <span class="tag">CNN / ViT</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Spark -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalSpark">
+                    <span class="project-meta text-purple">Big Data / PySpark</span>
+                    <h4>Segmentation Client (PySpark)</h4>
+                    <p class="project-desc">Traitement distribué de flux transactionnels massifs. Nettoyage de données et modélisation Bisecting KMeans via Spark MLlib.</p>
+                    <div class="tag-container"><span class="tag">Apache Spark</span> <span class="tag">Databricks</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Cloud-Spark" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Scraping -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalScraping">
+                    <span class="project-meta text-rose">Python / Web Scraping</span>
+                    <h4>Web Scraping Immobilier</h4>
+                    <p class="project-desc">Pipelines automatisés pour l'extraction (BeautifulSoup) et le nettoyage de données web immobilières, avec cartographie Folium.</p>
+                    <div class="tag-container"><span class="tag">BeautifulSoup</span> <span class="tag">Streamlit</span></div>
+                    <div class="action-btns">
+                        <a href="#" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fas fa-play"></i> App Live</a>
+                        <a href="https://github.com/tomlecorre-cmd/Python-French-real-estate-analysis" target="_blank" class="btn-card" onclick="event.stopPropagation();">Code</a>
+                        <span class="btn-card" style="border:none; padding:6px 0;">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Neo4j -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalNeo4j">
+                    <span class="project-meta text-blue">NoSQL / Graphes</span>
+                    <h4>Moteur de Recommandation</h4>
+                    <p class="project-desc">Conception de bases de données orientées graphes (Neo4j) et implémentation de l'algorithme PageRank pour l'analyse d'influence.</p>
+                    <div class="tag-container"><span class="tag">Neo4j</span> <span class="tag">Cypher</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Neo4j" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Sante -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalSante">
+                    <span class="project-meta text-emerald">Économétrie / Stata</span>
+                    <h4>Économétrie de la Santé</h4>
+                    <p class="project-desc">Analyse des facteurs déterminants de l'état de santé à l'aide de modèles non-linéaires (Logit, Ordered Probit) et Odds Ratios sur données EU-SILC.</p>
+                    <div class="tag-container"><span class="tag">Stata</span> <span class="tag">Logit</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie-Appliqu-e" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Internet -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalInternet">
+                    <span class="project-meta text-emerald">Économétrie / Stata</span>
+                    <h4>Temps d'utilisation d'Internet</h4>
+                    <p class="project-desc">Étude économétrique (MCO avec erreurs standards robustes) mesurant l'impact des facteurs socio-démographiques sur la connexion journalière.</p>
+                    <div class="tag-container"><span class="tag">Stata</span> <span class="tag">MCO Robustes</span></div>
+                    <div class="action-btns">
+                        <a href="https://github.com/tomlecorre-cmd/Econom-trie" target="_blank" class="btn-card primary" onclick="event.stopPropagation();">Code Source</a>
+                        <span class="btn-card">Détails</span>
+                    </div>
+                </div>
+
+                <!-- Projet : Coach -->
+                <div class="project-item" data-bs-toggle="modal" data-bs-target="#modalCoach">
+                    <span class="project-meta text-blue">Python / Streamlit</span>
+                    <h4>Générateur de Programmes Sportifs</h4>
+                    <p class="project-desc">Application interactive (Streamlit) calculant le métabolisme de base et générant des programmes nutritionnels avec export PDF (ReportLab).</p>
+                    <div class="tag-container"><span class="tag">Python</span> <span class="tag">ReportLab</span></div>
+                    <div class="action-btns">
+                        <a href="#" target="_blank" class="btn-card primary" onclick="event.stopPropagation();"><i class="fas fa-play"></i> App Live</a>
+                        <a href="https://github.com/tomlecorre-cmd/Python-projet" target="_blank" class="btn-card" onclick="event.stopPropagation();">Code</a>
+                        <span class="btn-card" style="border:none; padding:6px 0;">Détails</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
     </div>
 
-    <!-- MODALES POUR DETAILS -->
+    <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; background: white;">
+        <p class="text-muted mb-0">Tom Le Corre - 2026</p>
+    </footer>
+
+    <!-- ==============================================
+         MODALES DÉTAILLÉES (SANS EMOJIS, AVEC EXPLICATIONS COMPLETES) 
+         ============================================== -->
     
-    <!-- Modal 1 : VaR -->
+    <!-- Modal VaR -->
     <div class="modal fade" id="modalVaR" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="font-display fw-bold m-0">Hybrid Market Risk Modeling & Dynamic VaR Calculation</h5>
+                    <h5 class="font-display fw-bold m-0">Hybrid Market Risk Modeling and Dynamic VaR Calculation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h5 class="font-display fw-bold mt-2">Architecture Mathématique</h5>
-                            <p class="text-muted small">Conception d'un modèle en deux étapes (Two-Stage Hybrid Model) séparant l'espérance conditionnelle du rendement de sa volatilité extrême sur un portefeuille de 6 majors européennes.</p>
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Ce dépôt présente une architecture de modélisation hybride combinant économétrie traditionnelle et algorithmes de Machine Learning non-linéaires. L'objectif est d'estimer le risque extrême (Value at Risk à 95%) d'un portefeuille d'actions. L'actif étudié est un portefeuille équipondéré de 6 majors européennes du secteur de l'énergie (2015-2026).</p>
                             
+                            <h5 class="font-display fw-bold mt-4">Architecture et Méthodologie</h5>
+                            <p class="text-muted small">L'approche repose sur un modèle en deux étapes (Two-Stage Hybrid Model), séparant l'espérance conditionnelle du rendement de sa volatilité extrême :</p>
                             <ul class="text-muted small">
-                                <li><strong>Dynamique linéaire (ARIMA) :</strong> Filtrage de l'autocorrélation via un ARIMA(1,0,1). Stationnarité validée par test ADF (p-value < 0.001).</li>
-                                <li><strong>Diagnostic des résidus :</strong> Preuve de l'hétéroscédasticité conditionnelle et des "fat tails" via les tests d'Engle (ARCH-LM) et Jarque-Bera.</li>
-                                <li><strong>Régression Quantile (XGBoost) :</strong> Modélisation des résidus en minimisant la <em>Pinball Loss</em> ciblée sur le 5ème centile (alpha=0.05), avec intégration de variables macroéconomiques décalées (T-1).</li>
+                                <li><strong>Filtrage de la dynamique linéaire :</strong> Modélisation de l'autocorrélation des rendements via un ARIMA(1,0,1), justifié par des tests de stationnarité (ADF) et l'analyse des corrélogrammes.</li>
+                                <li><strong>Diagnostic des Résidus :</strong> L'analyse des résidus révèle des queues épaisses (Fat Tails, Kurtosis > 13) et une hétéroscédasticité conditionnelle (Test ARCH-LM), prouvant que l'ARIMA laisse la structure de risque intacte.</li>
+                                <li><strong>Régression Quantile :</strong> Utilisation d'un Gradient Boosting Regressor paramétré pour minimiser la Pinball Loss ciblée sur le 5ème centile (alpha=0.05), intégrant les chocs du Brent et du VIX.</li>
                             </ul>
 
-                            <h5 class="font-display fw-bold mt-4">Résultats du Backtesting</h5>
-                            <p class="text-muted small">Testé sur un échantillon hors-entraînement de 577 jours, le modèle démontre un taux de dépassement (Hit Rate) de <strong>2.95%</strong> pour une cible théorique fixée réglementairement à 5.00%, validant sa robustesse face aux chocs extrêmes.</p>
+                            <h5 class="font-display fw-bold mt-4">Résultats et Backtesting</h5>
+                            <p class="text-muted small">Testé sur un échantillon hors-entraînement de 577 jours, le modèle démontre une capacité robuste à s'ajuster dynamiquement à la volatilité. Le taux de dépassement (Hit Rate) est de 2.95% (pour une cible théorique réglementaire fixée à 5.00%). L'analyse d'explicabilité indique que le modèle s'appuie majoritairement sur les chocs du Brent et de l'EUR/USD.</p>
 
-                            <h5 class="font-display fw-bold mt-4">Stack & Librairies</h5>
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
                             <div class="code-box">
-<span class="code-comment"># Modélisation Linéaire & Tests Économétriques</span>
-<span class="code-keyword">import</span> statsmodels.tsa.arima.model <span class="code-keyword">as</span> arima
-<span class="code-keyword">import</span> statsmodels.stats.diagnostic <span class="code-keyword">as</span> diag
-
-<span class="code-comment"># ML Non-Linéaire (Quantile)</span>
-<span class="code-keyword">from</span> sklearn.ensemble <span class="code-keyword">import</span> GradientBoostingRegressor
-model = GradientBoostingRegressor(loss=<span class="code-keyword">'quantile'</span>, alpha=<span class="code-keyword">0.05</span>)
+# Traitement de séries temporelles : pandas, statsmodels (ARIMA, ADF, ARCH-LM)
+# Machine Learning Non-Linéaire : scikit-learn (GradientBoostingRegressor)
+# Fonction de perte : Pinball Loss (loss='quantile', alpha=0.05)
                             </div>
                         </div>
                         <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
-                            <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-card primary w-100 justify-content-center"><i class="fab fa-github"></i> Voir le Code Source</a>
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-emerald">Séries Temporelles</span>
+                                <span class="tag t-emerald">ARIMA</span>
+                                <span class="tag t-emerald">Quantile Boosting</span>
+                            </div>
+                            <div>
+                                <a href="https://github.com/tomlecorre-cmd/ML_Mod-lisation_Var" target="_blank" class="btn-modal" style="background-color: var(--text-emerald); color: var(--text-dark); width: 100%; text-align: center;">Voir le code sur GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -332,7 +394,7 @@ model = GradientBoostingRegressor(loss=<span class="code-keyword">'quantile'</sp
         </div>
     </div>
 
-    <!-- Modal 2 : MLOps -->
+    <!-- Modal MLOps -->
     <div class="modal fade" id="modalMLOps" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -343,27 +405,39 @@ model = GradientBoostingRegressor(loss=<span class="code-keyword">'quantile'</sp
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h5 class="font-display fw-bold mt-2">Ingénierie du Risque & Pipeline</h5>
-                            <p class="text-muted small">Pipeline de classification de bout en bout pour le risque de crédit. Analyse exploratoire stricte ayant mené à l'exclusion de features corrélées (>0.75) afin d'empêcher un biais critique de fuite de données temporelles (Data Leakage).</p>
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Conception d'un pipeline d'apprentissage automatique de bout en bout pour prédire les défauts de crédit. L'objectif n'était pas seulement d'entraîner un modèle, mais d'implémenter les bonnes pratiques MLOps : tracking des expérimentations (MLflow) et déploiement applicatif conteneurisé (Docker).</p>
                             
+                            <h5 class="font-display fw-bold mt-4">Rigueur et prévention du Data Leakage</h5>
+                            <p class="text-muted small">L'analyse exploratoire a mis en évidence des corrélations anormalement élevées avec la variable cible (défaut) pour les attributs concernant les lignes de crédit restantes et la dette totale exceptionnelle (> 0.75). Ces informations étant souvent postérieures à l'octroi du prêt, elles ont été supprimées en phase de preprocessing pour prévenir la fuite de données.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Modélisation et Tracking MLflow</h5>
                             <ul class="text-muted small">
-                                <li><strong>Experiment Tracking :</strong> Benchmark systématique (Logistic Regression, Random Forest, XGBoost) loggé en local via MLflow (Backend SQLite).</li>
-                                <li><strong>Containerisation :</strong> Application web complète embarquée dans une image Docker isolée pour garantir la reproductibilité totale des environnements.</li>
-                                <li><strong>Déploiement Streamlit :</strong> Interface duale proposant un Leaderboard des métriques (requêtes directes sur mlflow.db) et un module d'inférence en temps réel exploitant le modèle optimal.</li>
+                                <li><strong>Expérimentations :</strong> Entraînement et benchmark de trois familles de modèles (Régression Logistique, Random Forest, XGBoost) avec hyper-paramétrisation croisée.</li>
+                                <li><strong>Suivi local :</strong> Mise en place d'une base de données SQLite connectée à MLflow pour enregistrer systématiquement les métriques d'évaluation (Accuracy, F1-Score) et générer la sélection automatique du meilleur modèle.</li>
                             </ul>
 
-                            <h5 class="font-display fw-bold mt-4">Stack & Architecture</h5>
-                            <div class="code-box">
-<span class="code-comment"># Build & Run de l'infrastructure</span>
-<span class="code-keyword">docker build</span> -t mlops_loan_default .
-<span class="code-keyword">docker run</span> -p 8501:8501 mlops_loan_default
+                            <h5 class="font-display fw-bold mt-4">Déploiement Web et Docker</h5>
+                            <p class="text-muted small">L'interface (Streamlit) se divise en deux parties : un classement interactif lisant en temps réel les requêtes de la base MLflow, et un module d'inférence permettant de tester de nouvelles données sur le modèle sélectionné. Le tout est packagé via un Dockerfile pour une exécution universelle.</p>
 
-<span class="code-comment"># Stack interne</span>
-scikit-learn, xgboost, mlflow, streamlit, sqlite3
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Modélisation : scikit-learn, XGBoost, StandardScaler
+# MLOps & Tracking : MLflow (avec backend SQLite)
+# Déploiement : Streamlit, Docker
+# Commandes : docker build -t mlops_loan_default . / docker run -p 8501:8501
                             </div>
                         </div>
                         <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
-                            <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-card primary w-100 justify-content-center"><i class="fab fa-github"></i> Voir le Code Source</a>
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-purple">MLOps</span>
+                                <span class="tag t-purple">Docker</span>
+                                <span class="tag t-purple">MLflow</span>
+                                <span class="tag t-purple">XGBoost</span>
+                            </div>
+                            <div>
+                                <a href="https://github.com/tomlecorre-cmd/MLOps_Loan_Default" target="_blank" class="btn-modal" style="background-color: var(--text-purple); color: white; width: 100%; text-align: center;">Voir le code sur GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -371,40 +445,49 @@ scikit-learn, xgboost, mlflow, streamlit, sqlite3
         </div>
     </div>
 
-    <!-- Modal 3 : ETL CAC40 -->
-    <div class="modal fade" id="modalETL" tabindex="-1">
+    <!-- Modal CAC40 -->
+    <div class="modal fade" id="modalCac40" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="font-display fw-bold m-0">Multithreaded ETL & Financial Data Management</h5>
+                    <h5 class="font-display fw-bold m-0">Financial Data Pipeline: CAC 40 & Macro Analytics</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h5 class="font-display fw-bold mt-2">Architecture du Pipeline</h5>
-                            <p class="text-muted small">Développement d'un pipeline ETL (Extract, Transform, Load) automatisé pour synchroniser des données financières hétérogènes : 20 ans d'historique boursier pour 35 valeurs du CAC 40 et 12 indicateurs macro-économiques (VIX, Brent, EUR/USD).</p>
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">L'objectif n'était pas de créer un simple tableau de bord, mais de concevoir une solution complète d'ingénierie financière via un Pipeline ETL (Extract, Transform, Load) automatisé. Le but : traiter, nettoyer et normaliser plus de 20 ans d'historique boursier pour visualiser l'exposition des entreprises du CAC 40 aux chocs macro-économiques.</p>
                             
+                            <h5 class="font-display fw-bold mt-4">Défis Techniques</h5>
                             <ul class="text-muted small">
-                                <li><strong>Ingestion Optimisée :</strong> Utilisation de requêtes API asynchrones/multithreads (yfinance) pour gérer la volumétrie sans timeout.</li>
-                                <li><strong>Feature Engineering :</strong> Calcul automatisé de métriques quantitatives (Rentabilités logarithmiques pour stationnarité, Volatilité Glissante, rebasage base 100).</li>
-                                <li><strong>Logique Métier :</strong> Développement d'un algorithme de mapping sectoriel liant dynamiquement chaque actif à son facteur macro-économique principal.</li>
+                                <li><strong>Ingestion Multithread :</strong> Extraction simultanée des flux via l'API Yahoo Finance (35 actions et 12 indicateurs globaux) pour optimiser les temps de requête.</li>
+                                <li><strong>Alignement temporel :</strong> Les différents indices mondiaux ne partageant pas les mêmes jours de fermeture boursière, l'alignement des dates et la gestion des valeurs manquantes furent cruciaux.</li>
                             </ul>
 
-                            <h5 class="font-display fw-bold mt-4">Stack & Librairies</h5>
-                            <div class="code-box">
-<span class="code-comment"># Ingestion & Traitement</span>
-<span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
-<span class="code-keyword">import</span> yfinance <span class="code-keyword">as</span> yf
+                            <h5 class="font-display fw-bold mt-4">Méthodologie Financière</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Feature Engineering :</strong> Transformation des prix bruts en Rentabilités Logarithmiques pour la stationnarité, calcul de la Volatilité Glissante pour l'analyse du risque, et rebasage (Base 100) pour autoriser les comparaisons visuelles d'actifs hétérogènes.</li>
+                                <li><strong>Logique Métier :</strong> Création d'une bibliothèque interne liant dynamiquement chaque entreprise à son secteur d'influence et calculant la frontière de Markowitz.</li>
+                                <li><strong>Web Scraping (NLP) :</strong> Intégration d'un module d'extraction du sentiment de marché via BeautifulSoup sur la presse financière.</li>
+                            </ul>
 
-<span class="code-comment"># Visualisation Front-End & NLP</span>
-<span class="code-keyword">import</span> streamlit <span class="code-keyword">as</span> st
-<span class="code-keyword">import</span> plotly.graph_objects <span class="code-keyword">as</span> go
-<span class="code-keyword">from</span> bs4 <span class="code-keyword">import</span> BeautifulSoup
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Data Engineering : pandas, numpy
+# API & Finance : yfinance
+# NLP & Web : streamlit, beautifulsoup4, requests, wordcloud
+# Visualisation : plotly.graph_objects
                             </div>
                         </div>
                         <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
-                            <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-card primary w-100 justify-content-center"><i class="fab fa-github"></i> Voir le Code Source</a>
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-amber">Data Engineering</span>
+                                <span class="tag t-amber">Pandas</span>
+                                <span class="tag t-amber">yFinance</span>
+                                <span class="tag t-amber">Plotly</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Data-Management" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-amber); color: var(--text-dark); width: 100%; text-align: center;">Voir sur GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -412,7 +495,458 @@ scikit-learn, xgboost, mlflow, streamlit, sqlite3
         </div>
     </div>
 
-    <!-- Scripts Bootstrap -->
+    <!-- Modal Stock Market -->
+    <div class="modal fade" id="modalQuantML" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Stock Market Prediction via Machine Learning</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Ce projet modélise une stratégie de trading systématique et probabiliste visant à exploiter les inefficiences à court terme (J+1) du marché américain (S&P 500). L'étude couvre l'intégralité du traitement de la donnée, de l'ingénierie financière jusqu'au déploiement du modèle dans une interface d'analyse.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">Rigueur et Data Leakage</h5>
+                            <p class="text-muted small">Pour pallier le risque majeur de surapprentissage en finance, l'entraînement a été mené sous Walk-Forward Validation temporelle, empêchant toute fuite d'information du futur vers le passé. Le backtesting simule les conditions réelles en intégrant des frais de transaction incompressibles (0.1% par ordre).</p>
+
+                            <h5 class="font-display fw-bold mt-4">Modélisation et Explicabilité</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Algorithmes :</strong> Mise en compétition de méthodes ensemblistes (Random Forest, XGBoost) et de réseaux récurrents (LSTM, GRU). Le modèle XGBoost avec régularisation L1+L2 s'est imposé comme le plus robuste au bruit financier.</li>
+                                <li><strong>Interprétation :</strong> L'analyse des valeurs SHAP a permis d'extraire la logique de prédiction, démontrant le poids supérieur des indicateurs macroéconomiques par rapport à la simple analyse technique.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Modélisation ML/DL : scikit-learn, xgboost, tensorflow (LSTM/GRU)
+# Explicabilité : shap
+# API Financière : yfinance
+# Interface : streamlit, plotly
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-emerald">Séries Temporelles</span>
+                                <span class="tag t-emerald">XGBoost</span>
+                                <span class="tag t-emerald">LSTM</span>
+                                <span class="tag t-emerald">SHAP</span>
+                            </div>
+                            <div>
+                                <a href="https://machine-learnings-stockmarket.streamlit.app" target="_blank" class="btn-modal mb-3" style="background-color: var(--text-dark); color: white; width: 100%; text-align: center;">Tester l'Application Live</a>
+                                <a href="https://github.com/tomlecorre-cmd/Quant-Trading-SP500" target="_blank" class="btn-modal" style="background-color: var(--text-emerald); color: var(--text-dark); width: 100%; text-align: center;">Voir le code sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal GenAI -->
+    <div class="modal fade" id="modalGenAI" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Grands Modèles de Langage (Generative AI)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Exploration et implémentation pratique des architectures de modèles de langage (LLM). L'objectif est d'automatiser et de structurer des tâches de traitement du langage naturel (NLP) via l'intégration d'API et la conception de pipelines complexes.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">Méthodologie et Expérimentations</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Prompt Engineering :</strong> Structuration des requêtes pour maximiser la pertinence et la justesse des réponses générées, en limitant le risque d'hallucination contextuelle.</li>
+                                <li><strong>Intégration et Déploiement :</strong> Appel et gestion d'API de modèles propriétaires et open-source au sein de scripts Python pour l'automatisation d'analyses textuelles massives.</li>
+                                <li><strong>Méthodes d'amélioration :</strong> Études sur les approches de génération augmentée par la recherche (RAG) et les techniques de Zero/Few-shot learning.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Traitement NLP et LLMs
+# Langage : Python
+# Librairies courantes : openai, transformers (HuggingFace), langchain
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-blue">LLM</span>
+                                <span class="tag t-blue">NLP</span>
+                                <span class="tag t-blue">Python</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Generative-IA-projets" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-blue); color: var(--text-dark); width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Immo -->
+    <div class="modal fade" id="modalImmo" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Analyse Économétrique & Prédictive des Prix de l'Immobilier</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif de l'étude</h5>
+                            <p class="text-muted small">Ce projet universitaire dissèque la formation des prix immobiliers résidentiels en combinant la rigueur des tests d'hypothèses de l'économétrie classique (MCO) avec la capacité de généralisation des algorithmes de Machine Learning supervisé (Régression pénalisée).</p>
+
+                            <h5 class="font-display fw-bold mt-4">Traitement et Économétrie</h5>
+                            <ul class="text-muted small">
+                                <li>L'analyse exploratoire a révélé une distribution naturellement symétrique des prix, exemptant le modèle d'une transformation logarithmique habituelle.</li>
+                                <li>Le modèle linéaire multiple explique 79% de la variance (R2 ajusté = 0.789).</li>
+                                <li>Validation stricte des hypothèses : absence de multicolinéarité (VIF < 1.56), homoscédasticité validée par Breusch-Pagan, et détection d'une rupture structurelle post-COVID via un test de Chow.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Prédiction Machine Learning</h5>
+                            <p class="text-muted small">La transition vers Scikit-Learn a consisté à prévenir l'overfitting intrinsèque des MCO. La régression Ridge (pénalité L2), évaluée sur un split d'entraînement/test rigoureux, a permis de contraindre les coefficients et de minimiser au maximum l'erreur quadratique hors échantillon (RMSE).</p>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Économétrie et Tests : statsmodels.api (OLS, VIF, Breusch-Pagan, Chow Test)
+# Modélisation ML : scikit-learn (Ridge, Lasso, StandardScaler)
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-emerald">Scikit-Learn</span>
+                                <span class="tag t-emerald">Statsmodels</span>
+                                <span class="tag t-emerald">MCO</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Econom-trie-Immobilier" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-emerald); color: var(--text-dark); width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Medical DL -->
+    <div class="modal fade" id="modalMedicalDL" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Diagnostic Médical par Deep Learning</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Conception d'un système d'analyse de vision par ordinateur appliqué à la classification d'images histologiques (dataset PathMNIST). L'étude se concentre sur l'impact structurel de différentes architectures neuronales sur la généralisation de l'information spatiale d'une image médicale.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">Évolution Architecturale</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Réseau Dense :</strong> Démonstration de l'incapacité d'un réseau classique (aplatissement 1D) à conserver la structure spatiale, entraînant des confusions massives entre tissus aux couleurs similaires.</li>
+                                <li><strong>CNN et Transfer Learning :</strong> Implémentation de convolutions locales exploitant les gradients universels de modèles pré-entraînés (ImageNet) pour surpasser la baseline.</li>
+                                <li><strong>Vision Transformer (ViT) :</strong> Implémentation de l'architecture par patch. L'analyse souligne que la faible résolution des images restreint ici le potentiel du ViT par rapport aux biais inductifs du CNN.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Explicabilité (XAI)</h5>
+                            <p class="text-muted small">Pour répondre à l'exigence éthique du domaine médical, la technique Grad-CAM a été intégrée pour générer des cartes d'activation (heatmaps). Cela permet d'isoler visuellement les zones analysées par le modèle pour formuler sa prédiction.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Framework : PyTorch, Torchvision
+# Architectures : MLP, CNNs, Vision Transformers (ViT)
+# Explicabilité : Grad-CAM
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-purple">PyTorch</span>
+                                <span class="tag t-purple">CNN / ViT</span>
+                                <span class="tag t-purple">Computer Vision</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/TON_REPO_ICI" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-purple); color: white; width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Spark -->
+    <div class="modal fade" id="modalSpark" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Analyse Big Data & Segmentation Client (PySpark)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Ce projet adresse la problématique des flux massifs dans le secteur du e-commerce. Le but est de traiter plus d'un demi-million de transactions dans un environnement distribué pour segmenter la clientèle, et d'entraîner un modèle supervisé capable de détecter les futurs clients VIP.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">Traitement de la donnée (ETL distribué)</h5>
+                            <p class="text-muted small">Le nettoyage a nécessité l'identification et la gestion d'anomalies structurelles : commandes annulées entraînant des volumes négatifs et factures orphelines, exigeant un filtrage strict via l'API DataFrame de PySpark pour fiabiliser le socle de calcul.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Modélisation Machine Learning</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Feature Engineering :</strong> Conversion des logs en indicateurs RFM (Récence, Fréquence, Montant total).</li>
+                                <li><strong>Clustering (Non-supervisé) :</strong> Utilisation de l'algorithme Bisecting KMeans pour segmenter de manière agnostique les utilisateurs en 3 groupes (Inactifs, Réguliers, VIP).</li>
+                                <li><strong>Classification (Supervisé) :</strong> Entraînement d'une Régression Logistique sur ces groupes pour automatiser l'assignation de nouveaux profils avec une très haute précision.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Framework Cloud : Apache Spark (API PySpark)
+# Modélisation ML : Spark MLlib (BisectingKMeans, LogisticRegression)
+# Environnement de calcul : Databricks / Google Colab
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-purple">Apache Spark</span>
+                                <span class="tag t-purple">Databricks</span>
+                                <span class="tag t-purple">Spark MLlib</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Cloud-Spark" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-purple); color: white; width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Scraping -->
+    <div class="modal fade" id="modalScraping" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Web Scraping Immobilier</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">S'affranchir des bases de données préconçues pour maîtriser l'intégralité du pipeline d'acquisition web. L'enjeu est de collecter de manière automatisée des centaines d'annonces réelles, de restructurer ces données non structurées, et d'en déduire des analyses spatiales sur la valorisation au mètre carré.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">Méthodologie du Pipeline</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Extraction :</strong> Parsing massif des balises HTML avec BeautifulSoup pour isoler les variables clés (Prix, Surface, Pièces, Ville).</li>
+                                <li><strong>Enrichissement spatial :</strong> Utilisation de l'API OpenStreetMap (Nominatim) pour convertir les chaînes de caractères géographiques en coordonnées de géolocalisation précises (Latitude/Longitude).</li>
+                                <li><strong>Nettoyage :</strong> Gestion prudente des valeurs nulles inhérentes au scraping brut sans biais d'imputation artificielle.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Déploiement</h5>
+                            <p class="text-muted small">Développement d'une application de visualisation via Streamlit, embarquant la bibliothèque Folium pour restituer une cartographie interactive et filtrable dynamiquement selon les critères de la base extraite.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Acquisition et Parsing : BeautifulSoup, requests
+# Géolocalisation : Nominatim API
+# Cartographie et Interface : Folium, streamlit
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-rose">BeautifulSoup</span>
+                                <span class="tag t-rose">Streamlit</span>
+                                <span class="tag t-rose">Folium</span>
+                            </div>
+                            <div>
+                                <a href="#" target="_blank" class="btn-modal mb-3" style="background-color: var(--text-dark); color: white; width: 100%; text-align: center;">Lien de l'Application</a>
+                                <a href="https://github.com/tomlecorre-cmd/Python-French-real-estate-analysis" target="_blank" class="btn-modal" style="background-color: var(--text-rose); color: white; width: 100%; text-align: center;">Voir le code sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Neo4j -->
+    <div class="modal fade" id="modalNeo4j" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Moteur de Recommandation (Graphes Neo4j)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Remplacer la logique relationnelle (SQL), inefficace pour l'analyse de réseaux complexes, par la théorie des graphes. En s'appuyant sur le jeu de données Yelp, le projet développe un moteur de recommandation analysant l'influence sociale sans l'entrave des jointures multiples.</p>
+                            
+                            <h5 class="font-display fw-bold mt-4">Défis d'Ingénierie (ETL)</h5>
+                            <p class="text-muted small">L'importation directe d'une base JSON de plusieurs millions d'interactions menait à une saturation mémoire. L'utilisation de la librairie d'extension APOC a permis d'échantillonner le jeu de données tout en instanciant des "nœuds de remplacement" (Stub Nodes) pour préserver la continuité des arêtes relationnelles.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Analyse Algorithmique</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Approche classique :</strong> Comptage strict des avis menant mécaniquement à une recommandation biaisée en faveur de la masse (popularité brute).</li>
+                                <li><strong>Approche d'influence :</strong> Déploiement de l'algorithme PageRank (issu de la Graph Data Science Library) pour pondérer les nœuds selon le poids qualitatif des critiques du réseau, substituant la métrique de volume par une métrique de pertinence.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Base de Données NoSQL : Neo4j
+# Langage de requêtes : Cypher
+# Extensions : APOC (Nettoyage de données), GDS (Graph Data Science Library)
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-blue">Neo4j</span>
+                                <span class="tag t-blue">Cypher</span>
+                                <span class="tag t-blue">PageRank</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Neo4j" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-blue); color: var(--text-dark); width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sante -->
+    <div class="modal fade" id="modalSante" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Économétrie de la Santé</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif de l'étude</h5>
+                            <p class="text-muted small">Isoler mathématiquement l'influence des facteurs socio-économiques et comportementaux sur l'évaluation subjective de l'état de santé par les individus. L'analyse est menée sur un panel représentatif de 3 176 observations issu de l'enquête EU-SILC.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Modélisation Non-Linéaire</h5>
+                            <p class="text-muted small">Face à une variable catégorielle discrète (de "Mauvais" à "Très Bon"), l'utilisation d'une régression linéaire a été écartée au profit d'estimateurs du maximum de vraisemblance. L'architecture repose sur un Logit Binaire complété par un modèle Probit Ordonné respectant la stricte hiérarchie des niveaux de réponse.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Résultats Économétriques</h5>
+                            <ul class="text-muted small">
+                                <li>L'analyse interprétative est conduite via les Odds Ratios (OR).</li>
+                                <li><strong>Impact positif :</strong> La pratique d'une activité sportive accroît de 28,75% la probabilité d'estimer sa santé de manière positive. Le niveau d'éducation joue également un rôle protecteur significatif (+8,56% par échelon).</li>
+                                <li><strong>Facteurs pénalisants :</strong> Conformément aux intuitions physiologiques, l'élévation de l'âge, l'augmentation de l'IMC et le tabagisme (-16,8%) détériorent fortement l'indicateur.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Logiciel : Stata
+# Modèles d'estimation : Logit, Ordered Probit
+# Métriques d'analyse : Odds Ratios (Transformation logarithmique inversée)
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-emerald">Stata</span>
+                                <span class="tag t-emerald">Économétrie</span>
+                                <span class="tag t-emerald">Logit</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Econom-trie-Appliqu-e" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-emerald); color: var(--text-dark); width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Internet -->
+    <div class="modal fade" id="modalInternet" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Déterminants du Temps Passé sur Internet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif de l'étude</h5>
+                            <p class="text-muted small">Sur un échantillon de 1 120 individus, l'objectif est d'identifier de potentielles relations de causalité entre les caractéristiques socio-démographiques (âge, diplôme, taille du foyer) et l'amplitude de connexion quotidienne à Internet.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Transformation et Tests de Diagnostic</h5>
+                            <ul class="text-muted small">
+                                <li>L'asymétrie prononcée de la distribution initiale (Skewness = 1.44), biaisée par des hyper-utilisateurs, a justifié une transformation logarithmique de la variable dépendante pour normaliser le modèle.</li>
+                                <li>L'hétéroscédasticité globale, signalée par le test de White (p=0.043), a rendu obligatoire l'usage d'une régression avec erreurs standards robustes.</li>
+                                <li>Des tests croisés (Breusch-Pagan, Goldfeld-Quandt) ont écarté la responsabilité de la variable de l'âge dans cette hétéroscédasticité.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Conclusions</h5>
+                            <p class="text-muted small">L'élévation du diplôme et la vie en foyer élargi induisent statistiquement une augmentation du temps de connexion, à l'inverse du vieillissement. Avec un coefficient de détermination partiel (R2 = 16.95%), l'étude prouve mathématiquement que la majorité de la variance temporelle d'utilisation dépend de facteurs comportementaux exogènes à la simple condition socio-économique.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Logiciel : Stata
+# Modélisation : Moindres Carrés Ordinaires (MCO), Log-Level, Erreurs Robustes
+# Tests d'inférence : White, Breusch-Pagan, Goldfeld-Quandt, Student
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-emerald">Stata</span>
+                                <span class="tag t-emerald">Économétrie</span>
+                                <span class="tag t-emerald">MCO Robustes</span>
+                            </div>
+                            <a href="https://github.com/tomlecorre-cmd/Econom-trie" target="_blank" class="btn-modal mt-auto" style="background-color: var(--text-emerald); color: var(--text-dark); width: 100%; text-align: center;">Voir sur GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Coach -->
+    <div class="modal fade" id="modalCoach" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="font-display fw-bold m-0">Générateur de Programmes Sportifs (App & Algorithmique)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="font-display fw-bold mt-4">Objectif du projet</h5>
+                            <p class="text-muted small">Conception applicative d'un outil de génération dynamique de programmes d'entraînement physique et de macronutriments, adapté aux objectifs physiologiques de l'utilisateur sur des fenêtres de 4 semaines.</p>
+
+                            <h5 class="font-display fw-bold mt-4">Architecture Logicielle et Génération Documentaire</h5>
+                            <ul class="text-muted small">
+                                <li><strong>Algorithmique (Backend) :</strong> Isolation du code métier gérant les équations métaboliques (ex: Mifflin-St Jeor), l'équilibrage calorique et le formatage matriciel via des DataFrames Pandas.</li>
+                                <li><strong>Interface (Frontend) :</strong> Prise en charge des entrées utilisateurs via Streamlit et déploiement des outils de visualisation graphique de prévision de poids.</li>
+                                <li><strong>Moteur PDF :</strong> Implémentation bas-niveau avec ReportLab pour permettre l'export structuré et instantané des grilles du programme sous format PDF natif, au-delà d'une simple extraction HTML.</li>
+                            </ul>
+
+                            <h5 class="font-display fw-bold mt-4">Stack Technique</h5>
+                            <div class="code-box">
+# Développement Web : Python, Streamlit
+# Data Handling & Viz : Pandas, Plotly Express, Matplotlib
+# Génération Documentaire : ReportLab
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-end mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+                            <div class="tag-container justify-content-end mb-4">
+                                <span class="tag t-blue">Python</span>
+                                <span class="tag t-blue">Streamlit</span>
+                                <span class="tag t-blue">ReportLab</span>
+                            </div>
+                            <div>
+                                <a href="#" target="_blank" class="btn-modal mb-3" style="background-color: var(--text-dark); color: white; width: 100%; text-align: center;">Lien de l'Application</a>
+                                <a href="https://github.com/tomlecorre-cmd/Python-projet" target="_blank" class="btn-modal" style="background-color: var(--text-blue); color: var(--text-dark); width: 100%; text-align: center;">Voir le code sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
